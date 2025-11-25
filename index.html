@@ -4,11 +4,14 @@
   <meta charset="utf-8" />
   <title>PowerSplit — Fair Energy for Shared Homes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="PowerSplit fairly splits energy bills in shared homes with per-device tracking, beautiful dashboards, and a smooth online checkout." />
+  <meta
+    name="description"
+    content="PowerSplit fairly splits energy bills in shared homes with per-device tracking, dashboards and a smooth online checkout."
+  />
 
   <style>
     :root {
-      --bg-page: #f5f7fb;
+      --bg-page: #f3f5fb;
       --bg-surface: #ffffff;
       --bg-soft: #f9fafb;
       --bg-header: rgba(15, 23, 42, 0.96);
@@ -29,8 +32,8 @@
       --radius-md: 16px;
       --radius-pill: 999px;
 
-      --shadow-soft: 0 16px 45px rgba(15, 23, 42, 0.12);
-      --shadow-strong: 0 22px 70px rgba(15, 23, 42, 0.18);
+      --shadow-soft: 0 18px 55px rgba(15, 23, 42, 0.14);
+      --shadow-strong: 0 26px 80px rgba(15, 23, 42, 0.2);
 
       --transition-fast: 160ms ease-out;
       --transition-med: 220ms ease-out;
@@ -42,15 +45,15 @@
         "Segoe UI", Roboto, Arial, sans-serif;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
     }
 
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, #e0e7ff 0, #f5f7fb 40%, #f5f7fb 100%);
+      background: radial-gradient(circle at top left, #e0e7ff 0, #f3f5fb 40%, #eef2ff 100%);
       color: var(--fg-main);
     }
 
@@ -59,12 +62,10 @@
       text-decoration: none;
     }
 
-    /* Shell */
-
     .shell {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 14px 16px 40px;
+      padding: 14px 16px 80px;
     }
 
     @media (max-width: 640px) {
@@ -73,13 +74,13 @@
       }
     }
 
-    /* Header */
+    /* HEADER */
 
     header {
       position: sticky;
       top: 10px;
       z-index: 40;
-      margin-bottom: 22px;
+      margin-bottom: 26px;
       background: var(--bg-header);
       border-radius: 999px;
       padding: 8px 16px;
@@ -89,10 +90,10 @@
       gap: 12px;
       color: #e5e7eb;
       border: 1px solid rgba(148, 163, 184, 0.55);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.5);
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.65);
       opacity: 0;
       transform: translateY(-14px);
-      animation: headerIn 420ms ease-out forwards;
+      animation: headerIn 400ms ease-out forwards;
     }
 
     @keyframes headerIn {
@@ -161,7 +162,7 @@
 
     nav button:hover {
       color: #ffffff;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.9);
       transform: translateY(-1px);
     }
 
@@ -202,12 +203,12 @@
       background: linear-gradient(135deg, #16a34a, #22c55e);
       border-color: rgba(22, 163, 74, 0.9);
       color: #022c22;
-      box-shadow: 0 16px 40px rgba(21, 128, 61, 0.45);
+      box-shadow: 0 18px 45px rgba(21, 128, 61, 0.5);
     }
 
     .btn.primary:hover {
       background: linear-gradient(135deg, #22c55e, #4ade80);
-      box-shadow: 0 22px 60px rgba(21, 128, 61, 0.55);
+      box-shadow: 0 24px 70px rgba(21, 128, 61, 0.65);
       transform: translateY(-1px);
     }
 
@@ -217,7 +218,7 @@
 
     .btn:hover {
       border-color: rgba(148, 163, 184, 0.9);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.55);
+      box-shadow: 0 14px 38px rgba(15, 23, 42, 0.6);
       transform: translateY(-1px);
     }
 
@@ -232,39 +233,54 @@
         justify-content: center;
         border-radius: 20px;
       }
+
       .header-cta {
         justify-content: center;
       }
     }
 
-    /* Sections */
+    /* SECTIONS / ANIMATION */
 
     main {
       margin-top: 4px;
     }
 
     section {
-      margin-bottom: 40px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity var(--transition-med), transform var(--transition-med);
+      margin-bottom: 60px;
       display: none;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity var(--transition-med), transform var(--transition-med);
     }
 
     section.active {
       display: block;
     }
 
-    section.in-view {
+    section.show {
       opacity: 1;
       transform: translateY(0);
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 260ms ease-out, transform 260ms ease-out;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO */
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.05fr);
+      gap: 30px;
+      align-items: stretch;
+      min-height: 380px;
       margin-bottom: 30px;
     }
 
@@ -285,7 +301,7 @@
 
     h1 {
       margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 38px);
+      font-size: clamp(30px, 4.4vw, 40px);
       letter-spacing: 0.01em;
       color: #020617;
     }
@@ -304,7 +320,7 @@
     .hero-meta {
       font-size: 12px;
       color: var(--fg-soft);
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .row {
@@ -318,17 +334,22 @@
       background: var(--bg-surface);
       border-radius: 26px;
       border: 1px solid var(--border-subtle);
-      padding: 16px;
+      padding: 18px;
       box-shadow: var(--shadow-strong);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
+
+    /* HERO DASHBOARD PREVIEW */
 
     .hero-dashboard {
       border-radius: 18px;
-      background: linear-gradient(145deg, #020617, #020617);
+      background: radial-gradient(circle at top left, #0f172a, #020617);
       color: #e5e7eb;
-      padding: 12px;
+      padding: 14px;
       display: grid;
-      gap: 8px;
+      gap: 10px;
       font-size: 12px;
     }
 
@@ -346,7 +367,7 @@
     .hero-dash-chip {
       font-size: 11px;
       padding: 3px 8px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       border: 1px solid rgba(148, 163, 184, 0.6);
       color: #cbd5f5;
     }
@@ -373,17 +394,22 @@
       color: #e5e7eb;
     }
 
+    .hero-dash-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
     .hero-dash-amounts {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+      flex-direction: column;
+      gap: 6px;
     }
 
     .hero-person {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      justify-content: space-between;
+      align-items: baseline;
     }
 
     .hero-person span:first-child {
@@ -397,12 +423,12 @@
     }
 
     .hero-progress {
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .progress-bar {
       width: 100%;
-      height: 18px;
+      height: 16px;
       border-radius: 999px;
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(148, 163, 184, 0.7);
@@ -440,7 +466,7 @@
     }
 
     .section-lead {
-      margin: 0 0 16px;
+      margin: 0 0 18px;
       font-size: 14px;
       color: var(--fg-soft);
     }
@@ -451,17 +477,8 @@
       gap: 16px;
     }
 
-    .grid-two {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 18px;
-    }
-
     @media (max-width: 900px) {
       .grid-three {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .grid-two {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -499,67 +516,257 @@
       margin-top: 6px;
     }
 
-    .timeline {
-      position: relative;
-      padding-left: 20px;
+    /* HOME EXTRA ROW */
+
+    .home-row {
+      display: grid;
+      grid-template-columns: 2.1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 4px;
-      bottom: 4px;
-      width: 2px;
-      background: linear-gradient(to bottom, #bfdbfe, #d1fae5);
+    @media (max-width: 900px) {
+      .home-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 14px;
+    /* DASHBOARD SECTION */
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 2.1fr;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .timeline-dot {
-      position: absolute;
-      left: -2px;
-      top: 2px;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 2px solid #22c55e;
+    @media (max-width: 900px) {
+      .dashboard-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
-    .timeline-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .segment-toggle {
-      display: inline-flex;
-      border-radius: 999px;
-      border: 1px solid var(--border-strong);
+    .dash-shell {
+      background: var(--bg-surface);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-strong);
+      display: grid;
+      grid-template-columns: 0.95fr 2.1fr;
+      gap: 0;
       overflow: hidden;
-      background: #e5edff;
+      min-height: 340px;
     }
 
-    .segment-option {
-      border: none;
+    @media (max-width: 900px) {
+      .dash-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .dash-sidebar {
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: #e5e7eb;
+      padding: 14px;
+      border-right: 1px solid rgba(30, 64, 175, 0.7);
+    }
+
+    .dash-logo {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .dash-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .dash-nav button {
+      border-radius: 10px;
+      border: 1px solid transparent;
       background: transparent;
-      padding: 4px 10px;
+      color: #9ca3af;
       font-size: 12px;
+      padding: 6px 8px;
+      display: flex;
+      justify-content: space-between;
       cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .dash-nav button span:last-child {
+      font-size: 11px;
+    }
+
+    .dash-nav button.active {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+      transform: translateX(1px);
+    }
+
+    .dash-sidebar-footer {
+      margin-top: 14px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .dash-main {
+      padding: 16px;
+      background: radial-gradient(circle at top right, #e0f2fe 0, #eef2ff 40%, #f9fafb 100%);
+    }
+
+    .dash-main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .dash-main-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .dash-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.9);
       color: var(--fg-soft);
     }
 
-    .segment-option.active {
-      background: #ffffff;
-      color: #111827;
-      font-weight: 500;
+    .dash-main-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
     }
 
-    /* Pricing */
+    @media (max-width: 900px) {
+      .dash-main-content {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .dash-panel {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 12px;
+      height: 100%;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 180ms ease-out, transform 180ms ease-out;
+    }
+
+    .dash-panel.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dash-panel h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+    }
+
+    .dash-pill-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: #f9fafb;
+      color: var(--fg-soft);
+    }
+
+    .chip.strong {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .bar-chart {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 56px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #22c55e, #15803d);
+      border-radius: inherit;
+      transform-origin: bottom;
+      transform: scaleY(0.2);
+      transition: transform 260ms ease-out;
+    }
+
+    .bar-label {
+      font-size: 11px;
+      color: var(--fg-soft);
+    }
+
+    .table {
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    .table-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    /* PRICING */
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-two {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
 
     .price-tag {
       font-size: 26px;
@@ -597,7 +804,7 @@
       font-weight: 500;
     }
 
-    /* Forms */
+    /* FORMS / CHECKOUT */
 
     .field {
       margin-bottom: 10px;
@@ -711,8 +918,10 @@
       display: block;
     }
 
+    /* FOOTER + COOKIES */
+
     .footer {
-      margin-top: 28px;
+      margin-top: 10px;
       padding-top: 16px;
       border-top: 1px solid var(--border-subtle);
       font-size: 12px;
@@ -723,16 +932,62 @@
       gap: 8px;
     }
 
-    /* Simple fade on reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 260ms ease-out, transform 260ms ease-out;
+    .cookie-bar {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 50;
     }
 
-    .reveal.in-view {
-      opacity: 1;
+    .cookie-inner {
+      pointer-events: all;
+      max-width: 840px;
+      width: calc(100% - 24px);
+      margin: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform 260ms ease-out, opacity 260ms ease-out;
+      box-shadow: 0 -10px 35px rgba(15, 23, 42, 0.7);
+    }
+
+    .cookie-inner.show {
       transform: translateY(0);
+      opacity: 1;
+    }
+
+    .cookie-text {
+      flex: 1;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn.outline-light {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+      box-shadow: none;
+      padding-inline: 12px;
+    }
+
+    .btn.outline-light:hover {
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.8);
     }
   </style>
 </head>
@@ -750,8 +1005,7 @@
 
       <nav>
         <button data-section="home" class="active">Home</button>
-        <button data-section="product">Product</button>
-        <button data-section="how">How it works</button>
+        <button data-section="dashboard">Dashboard</button>
         <button data-section="pricing">Pricing</button>
         <button data-section="checkout">Checkout</button>
         <button data-section="account">Account</button>
@@ -765,18 +1019,18 @@
 
     <main>
       <!-- HOME -->
-      <section id="home" class="active in-view">
+      <section id="home" class="active show">
         <div class="hero">
           <div class="reveal in-view">
-            <div class="kicker">Designed for shared homes & student flats</div>
+            <div class="kicker">For shared homes & student flats</div>
             <h1>Split energy bills without awkward chats or guesswork.</h1>
             <p class="hero-sub">
-              PowerSplit tracks which devices each person actually uses, so everyone pays a fair share.
-              No more spreadsheet arguments, no more “who left the heater on?” debates.
+              PowerSplit tracks which devices each person actually uses. The app turns that into a fair monthly split,
+              so everyone sees the same numbers and the bill is settled in seconds.
             </p>
             <div class="row" style="margin-bottom:12px;">
               <button class="btn primary" data-section="checkout">Buy Starter Kit</button>
-              <button class="btn soft" data-section="product">See the product</button>
+              <button class="btn soft" data-section="dashboard">View dashboard</button>
             </div>
             <div class="hero-meta">
               Works in typical UK houses · Under 10 minutes to set up · One dashboard for the whole flat
@@ -798,18 +1052,19 @@
                 <button class="hero-dash-tab" data-mode="flat">Flat split</button>
               </div>
 
-              <div class="hero-dash-amounts" id="heroAmounts">
-                <!-- populated by JS -->
-              </div>
-
-              <div class="hero-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" id="heroFairBar"></div>
+              <div class="hero-dash-main">
+                <div class="hero-dash-amounts" id="heroAmounts"></div>
+                <div>
+                  <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">
+                    Estimated share this month
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="heroFairBar"></div>
+                  </div>
+                  <div class="hero-note" id="heroNote">
+                    With PowerSplit, heavy users pay more and light users pay less. The total bill stays the same.
+                  </div>
                 </div>
-              </div>
-
-              <div class="hero-note" id="heroNote">
-                With PowerSplit, heavy users pay ~£8–10 more, light users pay less. The total stays the same.
               </div>
             </div>
           </div>
@@ -818,149 +1073,120 @@
         <div class="reveal">
           <h2 class="section-title">Why shared houses like PowerSplit</h2>
           <p class="section-lead">
-            The goal is simple: nobody overpays, nobody feels blamed, and the numbers are clear enough that
-            the bill can be settled in seconds.
+            Less chat, more clarity. The app handles the maths so your group can focus on living together, not fighting
+            over bills.
           </p>
           <div class="grid-three">
             <div class="card">
               <h3>Per-device tracking</h3>
               <p class="muted">
-                Plug smart adapters into high-usage devices like heaters, gaming PCs and tumble dryers.
-                Each one is linked to a person or shared between everyone.
+                Smart plugs sit on top of your biggest energy users — heaters, gaming PCs, tumble dryers.
+                Each one is linked to a person or shared.
               </p>
             </div>
             <div class="card">
               <h3>Neutral maths</h3>
               <p class="muted">
-                PowerSplit converts kWh into an unbiased split. Shared devices default to equal shares,
-                and the group can adjust the ratios if you all agree.
+                PowerSplit converts kWh into an unbiased split. Shared devices default to equal shares;
+                the group can tweak splits if you all agree.
               </p>
             </div>
             <div class="card">
-              <h3>One tap to settle</h3>
+              <h3>Instant settle-up</h3>
               <p class="muted">
-                At the end of the month, everyone receives the same clear breakdown and pays their share
-                online. No more chasing screenshots or doing mental arithmetic.
+                At the end of the month, everyone sees the same breakdown and pays their share online. No more chasing
+                screenshots or rebilling people.
               </p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- PRODUCT -->
-      <section id="product">
-        <div class="reveal">
-          <h2 class="section-title">Starter Kit + App</h2>
-          <p class="section-lead">
-            PowerSplit is built around one simple idea: combine a small amount of smart hardware with a
-            clean, shared dashboard that everyone in the house can understand.
-          </p>
-        </div>
-
-        <div class="grid-two">
-          <div class="reveal">
-            <div class="card">
-              <h3>What’s in the Starter Kit</h3>
-              <ul class="clean">
-                <li>4× smart plugs — for heaters, consoles, PCs or other high-draw devices.</li>
-                <li>1× mains clamp — tracks overall usage so the numbers stay grounded in reality.</li>
-                <li>Label set — shows at a glance who owns what, and which plugs are shared.</li>
-              </ul>
-              <div class="note">
-                Kits are tuned for 3–5 person homes. Larger houses can add extra plugs later.
-              </div>
-            </div>
-
-            <div class="card">
-              <h3>What the app gives you</h3>
-              <ul class="clean">
-                <li>Assign devices to people or mark them as shared in a couple of taps.</li>
-                <li>See a live estimate of each person’s share for the current month.</li>
-                <li>Export a clean summary for your group chat or landlord whenever you need it.</li>
-              </ul>
-              <div style="margin-top:10px;">
-                <span class="pill-badge">No spreadsheets • No blame • One source of truth</span>
-              </div>
+        <div class="home-row reveal">
+          <div class="card">
+            <h3>New to PowerSplit?</h3>
+            <p class="muted">
+              Start with a Starter Kit and invite your housemates. The app guides you through a short setup and then
+              drops you into the dashboard.
+            </p>
+            <div class="row" style="margin-top:10px;">
+              <button class="btn primary" data-section="checkout">See checkout flow</button>
+              <button class="btn soft" data-section="pricing">View pricing</button>
             </div>
           </div>
 
-          <div class="reveal">
-            <div class="card">
-              <h3>Dashboard snapshot</h3>
-              <ul class="clean" id="productHouseList"></ul>
-              <div class="note">
-                Figures below are example data, but the layout and logic match the real dashboard design.
-              </div>
-            </div>
-
-            <div class="card">
-              <h3>Example devices</h3>
-              <ul class="clean" id="productDevices"></ul>
-            </div>
+          <div class="card">
+            <h3>Already have the kit?</h3>
+            <p class="muted">
+              Go straight to your dashboard, manage devices and download your latest statement.
+            </p>
+            <button class="btn soft" data-section="dashboard" style="margin-top:8px;width:100%;">Open dashboard</button>
           </div>
         </div>
       </section>
 
-      <!-- HOW IT WORKS -->
-      <section id="how">
+      <!-- DASHBOARD SECTION -->
+      <section id="dashboard">
         <div class="reveal">
-          <h2 class="section-title">How PowerSplit works in practice</h2>
+          <h2 class="section-title">Dashboard for people who already use PowerSplit</h2>
           <p class="section-lead">
-            The aim is to make the setup feel like setting up a console or a smart speaker — not like
-            installing a “smart meter project”.
+            This view shows how an existing household sees their data: overview at the top, then quick switches for
+            devices, people and statements.
           </p>
         </div>
 
-        <div class="grid-two">
-          <div class="reveal">
-            <div class="card">
-              <h3>Four simple steps</h3>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-title">1. Plug in the hardware</div>
-                  <p class="muted">Plug smart adapters into the biggest energy users and clip the mains clamp around your incoming feed.</p>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-title">2. Add your household</div>
-                  <p class="muted">Create a household in the app, name it (“Flat 12 King Street”), and invite your housemates by email.</p>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-title">3. Assign devices</div>
-                  <p class="muted">For each smart plug, choose who owns it or mark it as shared. PowerSplit handles the kWh and tariff maths.</p>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-title">4. Settle up</div>
-                  <p class="muted">When the bill arrives, everyone gets a link with their share and can pay from their phone in under a minute.</p>
-                </div>
-              </div>
+        <div class="dash-shell reveal">
+          <aside class="dash-sidebar">
+            <div class="dash-logo">Flat 12, King Street</div>
+            <div class="dash-nav">
+              <button class="active" data-dash="overview">
+                <span>Overview</span>
+                <span>Live</span>
+              </button>
+              <button data-dash="devices">
+                <span>Devices</span>
+                <span>4 tracked</span>
+              </button>
+              <button data-dash="people">
+                <span>People</span>
+                <span>3 members</span>
+              </button>
+              <button data-dash="statements">
+                <span>Statements</span>
+                <span>Last 12</span>
+              </button>
             </div>
-          </div>
+            <div class="dash-sidebar-footer">
+              Last sync · 2 min ago<br />
+              Tariff: 28.4p / kWh · Standing charge: 51p / day
+            </div>
+          </aside>
 
-          <div class="reveal">
-            <div class="card">
-              <h3>For different types of homes</h3>
-              <div class="segment-toggle" style="margin-bottom:10px;">
-                <button class="segment-option active" data-segment="students">Student flat</button>
-                <button class="segment-option" data-segment="professionals">Professionals</button>
-                <button class="segment-option" data-segment="landlords">Landlords</button>
-              </div>
-              <div id="segmentContent" class="muted">
-                In student flats, PowerSplit keeps things friendly by making it obvious how much heaters,
-                consoles and late-night study sessions actually cost — before anyone feels taken advantage of.
-              </div>
+          <div class="dash-main">
+            <div class="dash-main-header">
+              <div class="dash-main-title" id="dashTitle">Overview · October bill</div>
+              <div class="dash-pill">Sample data · matches numbers used in your report</div>
             </div>
 
-            <div class="card">
-              <h3>Privacy & control</h3>
-              <ul class="clean">
-                <li>Each person can see how their own devices contribute to the bill.</li>
-                <li>Household owners choose whether to grant landlord access to high-level summaries.</li>
-                <li>Usage is shown in kWh and cost, not in terms of “behaviour” or “judgement”.</li>
-              </ul>
+            <div class="dash-main-content">
+              <!-- left panel -->
+              <div class="dash-panel active" id="dashLeft">
+                <h4 id="dashLeftTitle">Household cost split</h4>
+                <div class="dash-pill-row">
+                  <span class="chip strong">Total · £95.30</span>
+                  <span class="chip">Electric only</span>
+                  <span class="chip">3 people</span>
+                </div>
+
+                <div class="bar-chart" id="dashBars">
+                  <!-- bars populated by JS -->
+                </div>
+              </div>
+
+              <!-- right panel -->
+              <div class="dash-panel active" id="dashRight">
+                <h4 id="dashRightTitle">This month at a glance</h4>
+                <div class="table" id="dashTable"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -969,17 +1195,17 @@
       <!-- PRICING -->
       <section id="pricing">
         <div class="reveal">
-          <h2 class="section-title">Pricing, without small print</h2>
+          <h2 class="section-title">Pricing without small print</h2>
           <p class="section-lead">
-            PowerSplit is priced for real shared homes: one kit per property, optional subscription if you
-            want deeper history and export tools.
+            One kit per property, optional subscription if you want deeper history and export tools. Everyone in the
+            house can use the app.
           </p>
         </div>
 
         <div class="reveal" style="margin-bottom:12px;">
           <div class="billing-toggle">
             <button class="billing-option active" data-billing="oneoff">Starter Kit only</button>
-            <button class="billing-option" data-billing="plus">Kit + Plus subscription</button>
+            <button class="billing-option" data-billing="bundle">Kit + Plus bundle</button>
           </div>
         </div>
 
@@ -991,7 +1217,7 @@
               <div class="price-note" id="priceKitNote">One-off cost for a 3–5 person home.</div>
               <ul class="clean" style="margin-top:10px;">
                 <li>Hardware, app access and first 3 months of usage included.</li>
-                <li>Per-device tracking, shared cost split and simple monthly summary.</li>
+                <li>Per-device tracking, shared cost split and simple monthly statement.</li>
                 <li>Email support for setup and troubleshooting.</li>
               </ul>
               <div style="margin-top:12px;">
@@ -1003,12 +1229,16 @@
           <div class="reveal">
             <div class="card" id="pricePlus">
               <h3>PowerSplit Plus</h3>
-              <div class="price-tag" id="pricePlusValue">£4.99<span style="font-size:12px;font-weight:400;"> / month</span></div>
-              <div class="price-note" id="pricePlusNote">Optional add-on for one household, not per person.</div>
+              <div class="price-tag" id="pricePlusValue">
+                £4.99<span style="font-size:12px;font-weight:400;"> / month</span>
+              </div>
+              <div class="price-note" id="pricePlusNote">
+                Optional add-on for one household, not per person.
+              </div>
               <ul class="clean" style="margin-top:10px;">
                 <li>Unlimited history and export to CSV or PDF.</li>
-                <li>Landlord summary view, ideal for student lets or HMOs.</li>
-                <li>Priority support and tailored tips to reduce your total spend.</li>
+                <li>Landlord-friendly summary view.</li>
+                <li>Priority support and tips to reduce your total spend.</li>
               </ul>
               <div style="margin-top:12px;">
                 <button class="btn soft" data-section="checkout">Add to order</button>
@@ -1023,8 +1253,8 @@
         <div class="reveal">
           <h2 class="section-title">Checkout</h2>
           <p class="section-lead">
-            Choose your plan, enter your details and review your order. The form behaves like a real
-            checkout, with validation and a confirmation screen.
+            Three steps: plan, details, payment. The form behaves like a real checkout with validation and a clear
+            confirmation.
           </p>
         </div>
 
@@ -1054,9 +1284,9 @@
                 <div class="field">
                   <label>Extra smart plugs (optional)</label>
                   <input type="number" id="coExtras" min="0" max="8" value="0" />
-                  <div class="note">£18 each, for larger homes or extra rooms.</div>
+                  <div class="note">£18 each, for extra rooms or additional devices.</div>
                 </div>
-                <button class="btn primary" id="toStep2" style="width:100%;margin-top:4px;">Next: your details</button>
+                <button class="btn primary" id="toStep2" style="width:100%;margin-top:4px;">Next: details</button>
               </div>
 
               <div id="step2" class="step-panel">
@@ -1099,13 +1329,15 @@
                 <div class="field">
                   <label>
                     <input type="checkbox" id="coTerms" />
-                    <span style="font-size:13px;color:var(--fg-soft);">I agree to the Terms and understand card details are processed securely.</span>
+                    <span style="font-size:13px;color:var(--fg-soft);">
+                      I agree to the Terms and understand card details are processed securely.
+                    </span>
                   </label>
                   <div class="error" id="coTermsError"></div>
                 </div>
                 <button class="btn primary" id="coSubmit" style="width:100%;margin-top:4px;">Pay & place order</button>
                 <div id="coSuccess" class="success" style="display:none;">
-                  Order confirmed. A receipt has been sent to your email in this demo flow.
+                  Order confirmed. A receipt has been generated in this demo checkout.
                 </div>
               </div>
             </div>
@@ -1117,16 +1349,15 @@
               <ul class="clean" id="coSummary"></ul>
               <div class="note" id="coTotalNote" style="margin-top:10px;"></div>
               <div class="note" style="margin-top:12px;">
-                This checkout runs fully in the browser, which is ideal for showing behaviour in a static
-                GitHub Pages deployment.
+                This runs entirely in the browser, which is ideal for a GitHub Pages deployment and coursework demo.
               </div>
             </div>
 
             <div class="card">
               <h3>Questions about billing?</h3>
               <p class="muted">
-                If something doesn’t look right, you can review your plan under the Account section and
-                adjust add-ons before your next billing cycle.
+                If your house changes or someone moves out, you can adjust members and add-ons in the Account section
+                before the next billing cycle.
               </p>
               <div style="margin-top:8px;">
                 <span class="small-link" data-section="account">Go to Account</span>
@@ -1141,8 +1372,7 @@
         <div class="reveal">
           <h2 class="section-title">Account & sign-in</h2>
           <p class="section-lead">
-            Create an account for your property, invite housemates and manage billing preferences in one
-            place.
+            Create an account for your property, invite housemates and manage billing preferences in one place.
           </p>
         </div>
 
@@ -1167,7 +1397,9 @@
                   <label for="suHouse">Household name</label>
                   <input type="text" id="suHouse" placeholder="e.g. Flat 12 King Street" />
                 </div>
-                <button type="button" class="btn primary" id="suBtn" style="width:100%;margin-top:4px;">Create account</button>
+                <button type="button" class="btn primary" id="suBtn" style="width:100%;margin-top:4px;">
+                  Create account
+                </button>
                 <div id="suSuccess" class="success" style="display:none;">
                   Account created in this demo environment. Use the sign-in form to simulate access.
                 </div>
@@ -1187,9 +1419,11 @@
                   <label for="liPassword">Password</label>
                   <input type="password" id="liPassword" placeholder="Password" />
                 </div>
-                <button type="button" class="btn soft" id="liBtn" style="width:100%;margin-top:4px;">Sign in</button>
+                <button type="button" class="btn soft" id="liBtn" style="width:100%;margin-top:4px;">
+                  Sign in
+                </button>
                 <div id="liSuccess" class="success" style="display:none;">
-                  Signed in (simulated). In a live deployment this would load your real dashboard.
+                  Signed in (simulated). A real deployment would now load your personal dashboard.
                 </div>
               </form>
               <div style="margin-top:8px;">
@@ -1207,6 +1441,20 @@
     </div>
   </div>
 
+  <!-- COOKIE BANNER -->
+  <div class="cookie-bar" id="cookieBar">
+    <div class="cookie-inner" id="cookieInner">
+      <div class="cookie-text">
+        We use cookies to keep you signed in and to remember which household you last opened.
+        No third-party ads, just the basics for this demo.
+      </div>
+      <div class="cookie-actions">
+        <button class="btn outline-light" id="cookieDecline">Minimal only</button>
+        <button class="btn primary" id="cookieAccept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Simple SPA nav
     const navButtons = document.querySelectorAll(
@@ -1216,7 +1464,13 @@
 
     function showSection(id) {
       sections.forEach((sec) => {
-        sec.classList.toggle("active", sec.id === id);
+        const active = sec.id === id;
+        sec.classList.toggle("active", active);
+        if (active) {
+          setTimeout(() => sec.classList.add("show"), 10);
+        } else {
+          sec.classList.remove("show");
+        }
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
       navButtons.forEach((btn) => {
@@ -1224,8 +1478,6 @@
           btn.classList.toggle("active", btn.dataset.section === id);
         }
       });
-      // trigger reveal on first show
-      document.getElementById(id)?.classList.add("in-view");
     }
 
     navButtons.forEach((btn) => {
@@ -1242,12 +1494,11 @@
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.18 }
     );
-
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-    // Hero split toggle
+    // HERO SPLIT TOGGLE
     const heroData = {
       fair: [
         { name: "You", amount: 36.8 },
@@ -1269,10 +1520,10 @@
     function renderHero(mode) {
       heroAmounts.innerHTML = "";
       heroData[mode].forEach((p) => {
-        const wrap = document.createElement("div");
-        wrap.className = "hero-person";
-        wrap.innerHTML = `<span>${p.name}</span><span>£${p.amount.toFixed(2)}</span>`;
-        heroAmounts.appendChild(wrap);
+        const row = document.createElement("div");
+        row.className = "hero-person";
+        row.innerHTML = `<span>${p.name}</span><span>£${p.amount.toFixed(2)}</span>`;
+        heroAmounts.appendChild(row);
       });
       if (mode === "fair") {
         heroFairBar.style.width = "56%";
@@ -1281,7 +1532,7 @@
       } else {
         heroFairBar.style.width = "33%";
         heroNote.textContent =
-          "With a flat split, everyone pays the same — even if their actual usage is very different.";
+          "With a flat split, everyone pays the same — even when their actual usage is very different.";
       }
     }
 
@@ -1292,58 +1543,125 @@
         renderHero(t.dataset.mode);
       });
     });
-
     renderHero("fair");
 
-    // Product example data
-    const samplePeople = [
-      { name: "You", amount: 36.8 },
-      { name: "Sam", amount: 30.1 },
-      { name: "Riley", amount: 28.4 }
-    ];
-    const sampleDevices = [
-      { name: "Bedroom heater", owner: "You", type: "Private" },
-      { name: "Gaming PC", owner: "Sam", type: "Private" },
-      { name: "Fridge & kitchen lights", owner: "Shared", type: "Shared" }
-    ];
+    // DASHBOARD DATA
+    const dashNavButtons = document.querySelectorAll(".dash-nav button");
+    const dashTitle = document.getElementById("dashTitle");
+    const dashLeftTitle = document.getElementById("dashLeftTitle");
+    const dashRightTitle = document.getElementById("dashRightTitle");
+    const dashBars = document.getElementById("dashBars");
+    const dashTable = document.getElementById("dashTable");
 
-    const productHouseList = document.getElementById("productHouseList");
-    const productDevices = document.getElementById("productDevices");
-
-    samplePeople.forEach((p) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${p.name}</strong> · £${p.amount.toFixed(2)}`;
-      productHouseList.appendChild(li);
-    });
-
-    sampleDevices.forEach((d) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${d.name}</strong> — ${d.type} (${d.owner})`;
-      productDevices.appendChild(li);
-    });
-
-    // Segment content
-    const segmentCopy = {
-      students:
-        "In student flats, PowerSplit keeps things fair by making it obvious how much heaters, consoles and late-night study sessions really cost — before anyone feels taken advantage of.",
-      professionals:
-        "In shared homes for professionals, PowerSplit closes the gap between very different schedules, working-from-home patterns and lifestyle habits without making it personal.",
-      landlords:
-        "For landlords and PBSA operators, PowerSplit provides a simple, exportable record that shows the bill is being split fairly, reducing disputes and support overhead."
+    const dashConfigs = {
+      overview: {
+        title: "Overview · October bill",
+        leftTitle: "Household cost split",
+        rightTitle: "This month at a glance",
+        bars: [
+          { name: "You", value: 36.8, share: 38 },
+          { name: "Sam", value: 30.1, share: 32 },
+          { name: "Riley", value: 28.4, share: 30 }
+        ],
+        table: [
+          ["Total bill", "£95.30"],
+          ["Shared devices", "£28.50"],
+          ["Private devices", "£52.40"],
+          ["Standing charge", "£14.40"]
+        ]
+      },
+      devices: {
+        title: "Devices · energy hotspots",
+        leftTitle: "Biggest devices this month",
+        rightTitle: "Where costs go",
+        bars: [
+          { name: "Heater", value: 18.6, share: 40 },
+          { name: "PC & monitor", value: 14.2, share: 32 },
+          { name: "Tumble dryer", value: 9.8, share: 28 }
+        ],
+        table: [
+          ["Kitchen & fridge", "£12.10 (shared)"],
+          ["Bedroom heaters", "£34.80 (mixed)"],
+          ["Electronics", "£9.60 (mixed)"],
+          ["Other base load", "£7.40 (shared)"]
+        ]
+      },
+      people: {
+        title: "People · fair split breakdown",
+        leftTitle: "People vs devices",
+        rightTitle: "Per-person summary",
+        bars: [
+          { name: "You", value: 36.8, share: 48 },
+          { name: "Sam", value: 30.1, share: 38 },
+          { name: "Riley", value: 28.4, share: 34 }
+        ],
+        table: [
+          ["You", "Heater, PC · £36.80"],
+          ["Sam", "PC, monitor · £30.10"],
+          ["Riley", "Light devices · £28.40"],
+          ["Shared", "Fridge, lighting · split evenly"]
+        ]
+      },
+      statements: {
+        title: "Statements · history",
+        leftTitle: "Last 3 months",
+        rightTitle: "Export & share",
+        bars: [
+          { name: "August", value: 82.4, share: 86 },
+          { name: "September", value: 90.1, share: 94 },
+          { name: "October", value: 95.3, share: 100 }
+        ],
+        table: [
+          ["August", "Settled · exported as PDF"],
+          ["September", "Settled · shared to group chat"],
+          ["October", "In progress · due 28th"],
+          ["Exports", "CSV & PDF available per month"]
+        ]
+      }
     };
 
-    const segmentButtons = document.querySelectorAll(".segment-option");
-    const segmentContent = document.getElementById("segmentContent");
+    function renderDashboard(mode) {
+      const cfg = dashConfigs[mode];
+      dashTitle.textContent = cfg.title;
+      dashLeftTitle.textContent = cfg.leftTitle;
+      dashRightTitle.textContent = cfg.rightTitle;
 
-    segmentButtons.forEach((btn) => {
+      dashBars.innerHTML = "";
+      cfg.bars.forEach((b) => {
+        const item = document.createElement("div");
+        item.className = "bar-item";
+        item.innerHTML = `
+          <div>${b.name}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="transform:scaleY(${b.share / 100});"></div>
+          </div>
+          <div class="bar-label">£${b.value.toFixed(2)}</div>
+        `;
+        dashBars.appendChild(item);
+      });
+
+      dashTable.innerHTML = "";
+      cfg.table.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.className = "table-row";
+        row.innerHTML = `<span>${label}</span><span>${value}</span>`;
+        dashTable.appendChild(row);
+      });
+
+      document.getElementById("dashLeft").classList.add("active");
+      document.getElementById("dashRight").classList.add("active");
+    }
+
+    dashNavButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        segmentButtons.forEach((b) => b.classList.remove("active"));
+        dashNavButtons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        segmentContent.textContent = segmentCopy[btn.dataset.segment];
+        renderDashboard(btn.dataset.dash);
       });
     });
+    renderDashboard("overview");
 
-    // Pricing toggle
+    // PRICING TOGGLE
     const billingButtons = document.querySelectorAll(".billing-option");
     const priceKitValue = document.getElementById("priceKitValue");
     const priceKitNote = document.getElementById("priceKitNote");
@@ -1358,20 +1676,22 @@
         if (mode === "oneoff") {
           priceKitValue.textContent = "£129";
           priceKitNote.textContent = "One-off cost for a 3–5 person home.";
-          pricePlusValue.innerHTML = "£4.99<span style=\"font-size:12px;font-weight:400;\"> / month</span>";
+          pricePlusValue.innerHTML =
+            "£4.99<span style=\"font-size:12px;font-weight:400;\"> / month</span>";
           pricePlusNote.textContent =
             "Optional add-on for one household, not per person.";
         } else {
           priceKitValue.textContent = "£129";
           priceKitNote.textContent = "Starter Kit · includes first year of Plus when bundled.";
-          pricePlusValue.innerHTML = "£0<span style=\"font-size:12px;font-weight:400;\"> for first year</span>";
+          pricePlusValue.innerHTML =
+            "£0<span style=\"font-size:12px;font-weight:400;\"> for first year</span>";
           pricePlusNote.textContent =
             "Then £4.99/month per household from year two. Cancel any time.";
         }
       });
     });
 
-    // Checkout calculation + stepper
+    // CHECKOUT SUMMARY + STEPS
     const coPlan = document.getElementById("coPlan");
     const coExtras = document.getElementById("coExtras");
     const coSummary = document.getElementById("coSummary");
@@ -1424,24 +1744,19 @@
     document.getElementById("toStep2").addEventListener("click", () => goStep(2));
     document.getElementById("backTo1").addEventListener("click", () => goStep(1));
     document.getElementById("toStep3").addEventListener("click", () => {
-      // quick validation on details
       const name = document.getElementById("coName");
       const email = document.getElementById("coEmail");
       const address = document.getElementById("coAddress");
       let ok = true;
-
       ["coNameError", "coEmailError", "coAddressError"].forEach(
         (id) => (document.getElementById(id).textContent = "")
       );
-
       if (!name.value.trim()) {
-        document.getElementById("coNameError").textContent =
-          "Please enter your name.";
+        document.getElementById("coNameError").textContent = "Please enter your name.";
         ok = false;
       }
       if (!email.value.trim() || !email.value.includes("@")) {
-        document.getElementById("coEmailError").textContent =
-          "Please enter a valid email.";
+        document.getElementById("coEmailError").textContent = "Please enter a valid email.";
         ok = false;
       }
       if (!address.value.trim()) {
@@ -1489,7 +1804,7 @@
       success.scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
-    // Account forms demo
+    // ACCOUNT FORMS
     document.getElementById("suBtn").addEventListener("click", () => {
       const n = document.getElementById("suName").value.trim();
       const e = document.getElementById("suEmail").value.trim();
@@ -1510,6 +1825,35 @@
         return;
       }
       document.getElementById("liSuccess").style.display = "block";
+    });
+
+    // COOKIE BANNER
+    const cookieBar = document.getElementById("cookieBar");
+    const cookieInner = document.getElementById("cookieInner");
+    const cookieAccept = document.getElementById("cookieAccept");
+    const cookieDecline = document.getElementById("cookieDecline");
+
+    function hideCookie() {
+      cookieInner.classList.remove("show");
+      setTimeout(() => {
+        cookieBar.style.display = "none";
+      }, 260);
+    }
+
+    if (!localStorage.getItem("ps-cookie-choice")) {
+      setTimeout(() => cookieInner.classList.add("show"), 400);
+    } else {
+      cookieBar.style.display = "none";
+    }
+
+    cookieAccept.addEventListener("click", () => {
+      localStorage.setItem("ps-cookie-choice", "all");
+      hideCookie();
+    });
+
+    cookieDecline.addEventListener("click", () => {
+      localStorage.setItem("ps-cookie-choice", "minimal");
+      hideCookie();
     });
   </script>
 </body>
