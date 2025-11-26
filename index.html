@@ -45,8 +45,7 @@
         "Segoe UI", Roboto, Arial, sans-serif;
     }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
     }
@@ -69,9 +68,7 @@
     }
 
     @media (max-width: 640px) {
-      .shell {
-        padding-inline: 14px;
-      }
+      .shell { padding-inline: 14px; }
     }
 
     /* HEADER */
@@ -98,10 +95,7 @@
     }
 
     @keyframes headerIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .brand {
@@ -189,9 +183,7 @@
       color: #ffffff;
     }
 
-    nav button.active::after {
-      transform: scaleX(1);
-    }
+    nav button.active::after { transform: scaleX(1); }
 
     .header-cta {
       display: flex;
@@ -225,12 +217,17 @@
       border-color: rgba(22, 163, 74, 0.9);
       color: #022c22;
       box-shadow: 0 18px 45px rgba(21, 128, 61, 0.5);
+      animation: breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%,100% { transform: translateY(0) scale(1); box-shadow: 0 18px 45px rgba(21,128,61,.45); }
+      50% { transform: translateY(-1px) scale(1.02); box-shadow: 0 26px 70px rgba(21,128,61,.7); }
     }
 
     .btn.primary:hover {
       background: linear-gradient(135deg, #22c55e, #4ade80);
-      box-shadow: 0 26px 80px rgba(21, 128, 61, 0.7);
-      transform: translateY(-1px) scale(1.01);
+      transform: translateY(-1px) scale(1.03);
     }
 
     .btn.soft {
@@ -240,7 +237,6 @@
     .btn:hover {
       border-color: rgba(148, 163, 184, 0.9);
       box-shadow: 0 14px 38px rgba(15, 23, 42, 0.6);
-      transform: translateY(-1px);
     }
 
     .btn:active {
@@ -254,6 +250,7 @@
       color: #e5e7eb;
       box-shadow: none;
       padding-inline: 12px;
+      animation: none;
     }
 
     .btn.outline-light:hover {
@@ -267,16 +264,12 @@
         justify-content: center;
         border-radius: 20px;
       }
-      .header-cta {
-        justify-content: center;
-      }
+      .header-cta { justify-content: center; }
     }
 
     /* SECTIONS */
 
-    main {
-      margin-top: 4px;
-    }
+    main { margin-top: 4px; }
 
     section {
       margin-bottom: 90px;
@@ -288,19 +281,10 @@
       min-height: 86vh;
     }
 
-    #home,
-    #dashboard {
-      min-height: 92vh;
-    }
+    #home, #dashboard { min-height: 92vh; }
 
-    section.active {
-      display: block;
-    }
-
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.active { display: block; }
+    section.show { opacity: 1; transform: translateY(0); }
 
     .reveal {
       opacity: 0;
@@ -308,11 +292,7 @@
       transition: opacity 280ms var(--transition-med),
         transform 280ms var(--transition-med);
     }
-
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
 
     /* HERO */
 
@@ -333,8 +313,7 @@
       }
     }
 
-    .hero-left,
-    .hero-right {
+    .hero-left, .hero-right {
       will-change: transform;
       transition: transform 500ms cubic-bezier(.19,1,.22,1);
     }
@@ -362,9 +341,7 @@
       color: var(--fg-muted);
     }
 
-    .hero-sub {
-      margin-bottom: 14px;
-    }
+    .hero-sub { margin-bottom: 14px; }
 
     .hero-meta {
       font-size: 12px;
@@ -410,9 +387,7 @@
       gap: 6px;
     }
 
-    .hero-dash-title {
-      font-weight: 600;
-    }
+    .hero-dash-title { font-weight: 600; }
 
     .hero-dash-chip {
       font-size: 11px;
@@ -516,9 +491,7 @@
     }
 
     @media (max-width: 900px) {
-      .grid-three {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .grid-three { grid-template-columns: minmax(0, 1fr); }
     }
 
     .card {
@@ -551,10 +524,7 @@
       border-color: rgba(129, 140, 248, 0.45);
     }
 
-    .card:hover::before {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+    .card:hover::before { opacity: 1; transform: translate3d(0,0,0); }
 
     .card h3 {
       margin: 0 0 6px;
@@ -575,9 +545,7 @@
       color: var(--fg-muted);
     }
 
-    ul.clean li + li {
-      margin-top: 6px;
-    }
+    ul.clean li + li { margin-top: 6px; }
 
     .home-row {
       display: grid;
@@ -587,12 +555,10 @@
     }
 
     @media (max-width: 900px) {
-      .home-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .home-row { grid-template-columns: minmax(0, 1fr); }
     }
 
-    /* PRODUCT GALLERY */
+    /* PRODUCT DEMO (no photos) */
 
     .gallery {
       margin-top: 34px;
@@ -627,25 +593,6 @@
       box-shadow: 0 32px 100px rgba(15, 23, 42, 0.35);
     }
 
-    .gallery-img-wrap {
-      border-radius: 18px;
-      overflow: hidden;
-      background: #020617;
-      max-height: 170px;
-    }
-
-    .gallery-img-wrap img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      transform: scale(1.02);
-      transition: transform 450ms cubic-bezier(.19,1,.22,1);
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.08);
-    }
-
     .gallery-title {
       font-size: 14px;
       font-weight: 600;
@@ -655,6 +602,243 @@
     .gallery-text {
       font-size: 12px;
       color: var(--fg-soft);
+    }
+
+    /* CSS “device” demo */
+
+    .demo-visual {
+      border-radius: 18px;
+      background: #020617;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      height: 160px;
+    }
+
+    /* Smart plug demo */
+    .plug-strip {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .plug {
+      width: 56px;
+      height: 76px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, #e5f4ff, #c4e3ff);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+      position: relative;
+      animation: float 3.2s ease-in-out infinite;
+    }
+
+    .plug:nth-child(2) { animation-delay: .4s; }
+    .plug:nth-child(3) { animation-delay: .8s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(2px); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .plug-face {
+      position: absolute;
+      inset: 12px 10px;
+      border-radius: 14px;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .plug-face div {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #0f172a;
+    }
+
+    .plug-face div:last-child {
+      width: 18px;
+      height: 4px;
+      border-radius: 999px;
+    }
+
+    .plug-led {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      width: 12px;
+      height: 4px;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: #16a34a;
+      box-shadow: 0 0 12px rgba(22, 163, 74, .9);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: .4; }
+      50% { opacity: 1; }
+    }
+
+    /* Phone demo */
+    .phone-shell {
+      width: 96px;
+      height: 150px;
+      border-radius: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at 0 0, #0f172a, #020617);
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(15,23,42,0.7);
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.8);
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 16px 8px 10px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, #111827, #020617);
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 4px;
+    }
+
+    .phone-pill {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg,#22c55e,#4ade80);
+      animation: meter 2.4s ease-in-out infinite;
+    }
+
+    .phone-pill:nth-child(2) {
+      background: linear-gradient(90deg,#38bdf8,#2563eb);
+      animation-delay: .2s;
+    }
+
+    .phone-pill:nth-child(3) {
+      background: linear-gradient(90deg,#fb923c,#ea580c);
+      animation-delay: .4s;
+    }
+
+    @keyframes meter {
+      0%,100% { transform: scaleX(.6); transform-origin:left; }
+      50% { transform: scaleX(1); }
+    }
+
+    .phone-bars {
+      margin-top: 4px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 3px;
+      align-items: flex-end;
+      height: 38px;
+    }
+
+    .phone-bar {
+      border-radius: 999px;
+      background: linear-gradient(180deg,#22c55e,#15803d);
+      transform-origin: bottom;
+      animation: bars 2.2s ease-in-out infinite;
+    }
+
+    .phone-bar:nth-child(2) {
+      background: linear-gradient(180deg,#38bdf8,#2563eb);
+      animation-delay: .1s;
+    }
+    .phone-bar:nth-child(3) {
+      background: linear-gradient(180deg,#fb923c,#ea580c);
+      animation-delay: .2s;
+    }
+    .phone-bar:nth-child(4) {
+      background: linear-gradient(180deg,#a855f7,#7c3aed);
+      animation-delay: .3s;
+    }
+
+    @keyframes bars {
+      0%,100% { height: 20%; }
+      50% { height: 80%; }
+    }
+
+    /* Dashboard mini demo */
+
+    .mini-dash {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left,#0f172a,#020617);
+      padding: 10px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(15,23,42,.7);
+    }
+
+    .mini-dash-header {
+      display:flex;
+      justify-content:space-between;
+      font-size:10px;
+      color:#9ca3af;
+      margin-bottom:4px;
+    }
+
+    .mini-dash-bar {
+      width:100%;
+      height:16px;
+      border-radius:999px;
+      overflow:hidden;
+      display:flex;
+      box-shadow: inset 0 1px 2px rgba(15,23,42,.8);
+      margin-bottom:6px;
+    }
+
+    .mini-dash-seg {
+      height:100%;
+      transition:width .4s cubic-bezier(.19,1.1,.22,1);
+    }
+
+    .mini-dash-seg:nth-child(1){background:linear-gradient(90deg,#22c55e,#15803d);width:38%;}
+    .mini-dash-seg:nth-child(2){background:linear-gradient(90deg,#38bdf8,#2563eb);width:32%;}
+    .mini-dash-seg:nth-child(3){background:linear-gradient(90deg,#fb923c,#ea580c);width:30%;}
+
+    .mini-dash-cards {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:4px;
+      margin-top:4px;
+    }
+
+    .mini-dash-card {
+      border-radius:10px;
+      background:rgba(15,23,42,.9);
+      padding:4px 6px;
+      font-size:9px;
+      color:#e5e7eb;
+    }
+
+    .mini-dash-card strong {
+      display:block;
+      font-size:10px;
     }
 
     /* DASHBOARD SECTION */
@@ -679,9 +863,7 @@
     }
 
     @media (max-width: 900px) {
-      .dash-shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .dash-shell { grid-template-columns: minmax(0, 1fr); }
     }
 
     .dash-sidebar {
@@ -718,9 +900,7 @@
         border-color var(--transition-fast), transform var(--transition-fast);
     }
 
-    .dash-nav button span:last-child {
-      font-size: 11px;
-    }
+    .dash-nav button span:last-child { font-size: 11px; }
 
     .dash-nav button.active {
       background: rgba(15, 23, 42, 0.95);
@@ -777,9 +957,7 @@
     }
 
     @media (max-width: 900px) {
-      .usage-wrap {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .usage-wrap { grid-template-columns: minmax(0, 1fr); }
     }
 
     .usage-metrics {
@@ -859,12 +1037,8 @@
     }
 
     @keyframes barGlow {
-      from {
-        background-position: 0% 0;
-      }
-      to {
-        background-position: -100% 0;
-      }
+      from { background-position: 0% 0; }
+      to { background-position: -100% 0; }
     }
 
     .usage-fill {
@@ -874,21 +1048,10 @@
       transition: width 480ms cubic-bezier(.19,1.25,.22,1);
     }
 
-    .u-col-0 {
-      background: linear-gradient(90deg, #22c55e, #15803d);
-    }
-
-    .u-col-1 {
-      background: linear-gradient(90deg, #38bdf8, #2563eb);
-    }
-
-    .u-col-2 {
-      background: linear-gradient(90deg, #fb923c, #ea580c);
-    }
-
-    .u-col-3 {
-      background: linear-gradient(90deg, #a855f7, #7c3aed);
-    }
+    .u-col-0 { background: linear-gradient(90deg, #22c55e, #15803d); }
+    .u-col-1 { background: linear-gradient(90deg, #38bdf8, #2563eb); }
+    .u-col-2 { background: linear-gradient(90deg, #fb923c, #ea580c); }
+    .u-col-3 { background: linear-gradient(90deg, #a855f7, #7c3aed); }
 
     .usage-legend {
       display: flex;
@@ -912,22 +1075,10 @@
       background: #22c55e;
       box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.25);
     }
-
-    .usage-dot.u-col-0 {
-      background: #22c55e;
-    }
-
-    .usage-dot.u-col-1 {
-      background: #38bdf8;
-    }
-
-    .usage-dot.u-col-2 {
-      background: #fb923c;
-    }
-
-    .usage-dot.u-col-3 {
-      background: #a855f7;
-    }
+    .usage-dot.u-col-0 { background:#22c55e; }
+    .usage-dot.u-col-1 { background:#38bdf8; }
+    .usage-dot.u-col-2 { background:#fb923c; }
+    .usage-dot.u-col-3 { background:#a855f7; }
 
     .dash-lower-row {
       display: grid;
@@ -938,9 +1089,7 @@
     }
 
     @media (max-width: 900px) {
-      .dash-lower-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .dash-lower-row { grid-template-columns: minmax(0, 1fr); }
     }
 
     .dash-panel {
@@ -978,11 +1127,8 @@
       border-bottom: 1px dashed rgba(148, 163, 184, 0.5);
     }
 
-    .table-row:last-child {
-      border-bottom: none;
-    }
+    .table-row:last-child { border-bottom: none; }
 
-    /* Usage stories under dashboard */
     .usage-stories {
       margin-top: 20px;
       display: grid;
@@ -991,9 +1137,7 @@
     }
 
     @media (max-width: 900px) {
-      .usage-stories {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .usage-stories { grid-template-columns: minmax(0, 1fr); }
     }
 
     .usage-story {
@@ -1018,7 +1162,7 @@
       color: #16a34a;
     }
 
-    /* PRICING / LAYOUT */
+    /* PRICING */
 
     .grid-two {
       display: grid;
@@ -1027,9 +1171,7 @@
     }
 
     @media (max-width: 900px) {
-      .grid-two {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .grid-two { grid-template-columns: minmax(0, 1fr); }
     }
 
     .price-tag {
@@ -1076,16 +1218,12 @@
     }
 
     @media (max-width: 900px) {
-      .pricing-bottom {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .pricing-bottom { grid-template-columns: minmax(0, 1fr); }
     }
 
     /* FORMS */
 
-    .field {
-      margin-bottom: 10px;
-    }
+    .field { margin-bottom: 10px; }
 
     label {
       font-size: 13px;
@@ -1108,9 +1246,7 @@
       color: var(--fg-main);
     }
 
-    input::placeholder {
-      color: var(--fg-muted);
-    }
+    input::placeholder { color: var(--fg-muted); }
 
     .input-row {
       display: grid;
@@ -1187,13 +1323,8 @@
       background: var(--border-strong);
     }
 
-    .step-panel {
-      display: none;
-    }
-
-    .step-panel.active {
-      display: block;
-    }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
 
     .security-strip {
       margin-top: 10px;
@@ -1225,15 +1356,11 @@
     }
 
     @media (max-width: 900px) {
-      .footer-main {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
+      .footer-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
     }
 
     @media (max-width: 640px) {
-      .footer-main {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .footer-main { grid-template-columns: minmax(0, 1fr); }
     }
 
     .footer-logo {
@@ -1264,14 +1391,8 @@
       font-size: 13px;
     }
 
-    .footer-links a {
-      color: var(--fg-soft);
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: #111827;
-    }
+    .footer-links a { color: var(--fg-soft); }
+    .footer-links a:hover { color: #111827; }
 
     .footer-bottom {
       margin-top: 14px;
@@ -1320,23 +1441,12 @@
       opacity: 1;
     }
 
-    .cookie-text {
-      flex: 1;
-    }
-
-    .cookie-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
+    .cookie-text { flex: 1; }
+    .cookie-actions { display:flex; gap:6px; flex-wrap:wrap; }
 
     /* Motion-safe */
-
     @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-      }
+      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
@@ -1362,7 +1472,7 @@
 
       <div class="header-cta">
         <button class="btn soft" data-section="account">Sign in</button>
-        <button class="btn primary" data-section="checkout">Get PowerSplit</button>
+        <button class="btn primary" data-section="checkout" data-action="buy-starter" id="headerBuy">Get PowerSplit</button>
       </div>
     </header>
 
@@ -1374,11 +1484,11 @@
             <div class="kicker">For shared homes & student flats</div>
             <h1>Split energy bills without awkward chats or guesswork.</h1>
             <p class="hero-sub">
-              PowerSplit tracks which devices each person actually uses. The app turns that into a fair monthly split,
-              so everyone sees the same numbers and the bill is settled in seconds.
+              PowerSplit tracks which devices each person actually uses. The app turns that into a fair monthly split, so
+              everyone sees the same numbers and the bill is settled in seconds.
             </p>
             <div class="row" style="margin-bottom:12px;">
-              <button class="btn primary" data-section="checkout">Buy Starter Kit</button>
+              <button class="btn primary" data-action="buy-starter">Buy Starter Kit</button>
               <button class="btn soft" data-section="dashboard">View dashboard</button>
             </div>
             <div class="hero-meta">
@@ -1405,9 +1515,7 @@
                 <div class="hero-dash-main">
                   <div class="hero-dash-amounts" id="heroAmounts"></div>
                   <div>
-                    <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">
-                      Estimated share this month
-                    </div>
+                    <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Estimated share this month</div>
                     <div class="progress-bar">
                       <div class="progress-fill" id="heroFairBar"></div>
                     </div>
@@ -1454,10 +1562,11 @@
           <div class="card">
             <h3>New to PowerSplit?</h3>
             <p class="muted">
-              Start with a Starter Kit and invite your housemates. The app guides you through a short setup and then drops you into the dashboard.
+              Start with a Starter Kit and invite your housemates. The app guides you through a short setup and then drops you
+              into your dashboard.
             </p>
             <div class="row" style="margin-top:10px;">
-              <button class="btn primary" data-section="checkout">See checkout flow</button>
+              <button class="btn primary" data-action="buy-starter">See checkout flow</button>
               <button class="btn soft" data-section="pricing">View pricing</button>
             </div>
           </div>
@@ -1471,43 +1580,90 @@
           </div>
         </div>
 
-        <!-- PRODUCT GALLERY with photos -->
+        <!-- PRODUCT DEMO (CSS only) -->
         <div class="gallery reveal">
           <h2 class="section-title" style="margin-bottom:10px;">See the Starter Kit</h2>
           <p class="section-lead" style="margin-bottom:16px;">
-            Real hardware, real app. These visuals show what arrives in the box and how the dashboard looks on day one.
+            Real hardware, real app. These demos show what arrives in the box and how the dashboard looks on day one.
           </p>
           <div class="gallery-row">
             <div class="gallery-card">
-              <div class="gallery-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
-                  alt="Smart plug and cable on desk"
-                />
+              <div class="demo-visual">
+                <div class="plug-strip">
+                  <div class="plug">
+                    <div class="plug-face">
+                      <div></div><div></div><div></div>
+                    </div>
+                    <div class="plug-led"></div>
+                  </div>
+                  <div class="plug">
+                    <div class="plug-face">
+                      <div></div><div></div><div></div>
+                    </div>
+                    <div class="plug-led"></div>
+                  </div>
+                  <div class="plug">
+                    <div class="plug-face">
+                      <div></div><div></div><div></div>
+                    </div>
+                    <div class="plug-led"></div>
+                  </div>
+                </div>
               </div>
               <div class="gallery-title">Smart plugs that snap into place</div>
               <div class="gallery-text">
                 Compact plugs that sit between the socket and device. No tools, no electrician required.
               </div>
             </div>
+
             <div class="gallery-card">
-              <div class="gallery-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
-                  alt="Phone showing an app dashboard"
-                />
+              <div class="demo-visual" style="display:flex;justify-content:center;align-items:center;">
+                <div class="phone-shell">
+                  <div class="phone-notch"></div>
+                  <div class="phone-screen">
+                    <div class="phone-row">
+                      <div class="phone-pill"></div>
+                      <div class="phone-pill"></div>
+                      <div class="phone-pill"></div>
+                    </div>
+                    <div class="phone-bars">
+                      <div class="phone-bar"></div>
+                      <div class="phone-bar"></div>
+                      <div class="phone-bar"></div>
+                      <div class="phone-bar"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="gallery-title">Live dashboard on your phone</div>
               <div class="gallery-text">
                 Everyone in the flat can see their share in real-time: no more screenshots or mystery numbers.
               </div>
             </div>
+
             <div class="gallery-card">
-              <div class="gallery-img-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1517059224940-d4af9eec41e5?auto=format&fit=crop&w=900&q=80"
-                  alt="Cardboard shipping box"
-                />
+              <div class="demo-visual">
+                <div class="mini-dash">
+                  <div class="mini-dash-header">
+                    <span>Starter Kit</span>
+                    <span>£129</span>
+                  </div>
+                  <div class="mini-dash-bar">
+                    <div class="mini-dash-seg"></div>
+                    <div class="mini-dash-seg"></div>
+                    <div class="mini-dash-seg"></div>
+                  </div>
+                  <div class="mini-dash-cards">
+                    <div class="mini-dash-card">
+                      <strong>Devices</strong>
+                      4 plugs · ready on arrival
+                    </div>
+                    <div class="mini-dash-card">
+                      <strong>Setup</strong>
+                      Scan QR · join your flat
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="gallery-title">Starter Kit in one box</div>
               <div class="gallery-text">
@@ -1521,9 +1677,9 @@
       <!-- DASHBOARD SECTION -->
       <section id="dashboard">
         <div class="reveal">
-          <h2 class="section-title">Dashboard for people who already use PowerSplit</h2>
+          <h2 class="section-title" id="dashboardHeading">Welcome back, Sam</h2>
           <p class="section-lead">
-            Live usage, fair split and statements — in one clean view. Tap between Overview, Devices, People and Statements.
+            Here’s how your flat is tracking this month. Switch between Overview, Devices, People and Statements.
           </p>
         </div>
 
@@ -1556,7 +1712,7 @@
 
           <div class="dash-main">
             <div class="dash-main-header">
-              <div class="dash-main-title" id="dashTitle">Overview · October bill</div>
+              <div class="dash-main-title" id="dashTitle">Sam’s October dashboard</div>
               <div class="dash-pill">Sample data · matches numbers used in your report</div>
             </div>
 
@@ -1590,7 +1746,6 @@
                 </div>
               </div>
 
-              <!-- Usage stories strip to fill extra height -->
               <div class="usage-stories">
                 <div class="usage-story">
                   <div class="usage-story-title">Gaming night spike</div>
@@ -1641,7 +1796,7 @@
                 <li>Email support for setup and troubleshooting.</li>
               </ul>
               <div style="margin-top:12px;">
-                <button class="btn primary" data-section="checkout">Buy now</button>
+                <button class="btn primary" data-action="buy-starter">Buy now</button>
               </div>
             </div>
           </div>
@@ -1661,18 +1816,17 @@
                 <li>Priority support and tips to reduce your total spend.</li>
               </ul>
               <div style="margin-top:12px;">
-                <button class="btn soft" data-section="checkout">Add to order</button>
+                <button class="btn soft" data-action="buy-bundle">Add to order</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Fill the rest of page with a little timeline -->
         <div class="pricing-bottom reveal">
           <div class="card">
             <h3>1. Order today</h3>
             <p class="muted">
-              Place your order through this demo checkout. In a real launch, payment would be handled by a secure
+              Place your order through this demo checkout. In a live launch, payment would be handled by a secure
               provider like Stripe.
             </p>
           </div>
@@ -1696,8 +1850,7 @@
         <div class="reveal">
           <h2 class="section-title">Checkout</h2>
           <p class="section-lead">
-            Three steps: plan, details, payment. The form behaves like a real checkout with validation and a clear
-            confirmation.
+            Three steps: plan, details, payment. The form behaves like a real checkout with validation and a clear confirmation.
           </p>
         </div>
 
@@ -1804,8 +1957,7 @@
             <div class="card">
               <h3>Questions about billing?</h3>
               <p class="muted">
-                If your house changes or someone moves out, you can adjust members and add-ons in the Account section
-                before the next billing cycle.
+                If your house changes or someone moves out, you can adjust members and add-ons in the Account section before the next billing cycle.
               </p>
               <div style="margin-top:8px;">
                 <span class="small-link" data-section="account">Go to Account</span>
@@ -1895,8 +2047,7 @@
             </div>
           </div>
           <div style="font-size:13px;color:var(--fg-soft);">
-            A concept project that demonstrates how a real product website, dashboard and checkout could look on GitHub
-            Pages.
+            A concept project that demonstrates how a real product website, dashboard and checkout could look on GitHub Pages.
           </div>
         </div>
 
@@ -1915,8 +2066,8 @@
           <div class="footer-links">
             <a href="#faq">FAQ (coursework)</a>
             <a href="mailto:support@powersplit-demo.com">support@powersplit-demo.com</a>
-            <a href="#">Delivery & returns</a>
-            <a href="#">Safety & warranties</a>
+            <a href="#">Delivery &amp; returns</a>
+            <a href="#">Safety &amp; warranties</a>
           </div>
         </div>
 
@@ -2054,10 +2205,8 @@
         const rect = container.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-
         const rotateX = y * -6;
         const rotateY = x * 8;
-
         left.style.transform = `translate3d(${x * -10}px, ${y * -8}px, 0)`;
         right.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${x * 12}px, ${y * 10}px, 0)`;
       });
@@ -2067,13 +2216,22 @@
         right.style.transform = "";
       });
     }
-
     addParallax("#hero", ".hero-left", ".hero-right");
     addParallax("#dashShell", ".dash-sidebar", ".dash-main");
 
+    // PERSONAL NAME
+    let userName = localStorage.getItem("ps-name") || "Sam";
+    const dashboardHeading = document.getElementById("dashboardHeading");
+    const dashTitle = document.getElementById("dashTitle");
+
+    function applyUserName() {
+      dashboardHeading.textContent = `Welcome back, ${userName}`;
+      if (dashTitle) dashTitle.textContent = `${userName}’s October dashboard`;
+    }
+    applyUserName();
+
     // DASHBOARD DATA
     const dashNavButtons = document.querySelectorAll(".dash-nav button");
-    const dashTitle = document.getElementById("dashTitle");
     const usageLabel = document.getElementById("usageLabel");
     const usageMain = document.getElementById("usageMain");
     const usageSub = document.getElementById("usageSub");
@@ -2089,7 +2247,6 @@
 
     const dashConfigs = {
       overview: {
-        title: "Overview · October bill",
         usageLabel: "Usage this month",
         usageMain: "£95.30",
         usageSub: "312 kWh · electric only",
@@ -2220,8 +2377,12 @@
 
     function renderDashboard(mode) {
       const cfg = dashConfigs[mode];
+      if (mode === "overview") {
+        dashTitle.textContent = `${userName}’s October dashboard`;
+      } else {
+        dashTitle.textContent = cfg.title;
+      }
 
-      dashTitle.textContent = cfg.title;
       usageLabel.textContent = cfg.usageLabel;
       usageMain.textContent = cfg.usageMain;
       usageSub.textContent = cfg.usageSub;
@@ -2236,7 +2397,6 @@
 
       usageBarTitle.textContent = cfg.barTitle;
       usageBarTotal.textContent = cfg.barTotal;
-
       usageBar.innerHTML = "";
       usageLegend.innerHTML = "";
 
@@ -2361,7 +2521,6 @@
         2
       )} (subscription, if chosen, billed monthly).`;
     }
-
     renderSummary();
     coPlan.addEventListener("change", renderSummary);
     coExtras.addEventListener("input", renderSummary);
@@ -2377,6 +2536,7 @@
 
     document.getElementById("toStep2").addEventListener("click", () => goStep(2));
     document.getElementById("backTo1").addEventListener("click", () => goStep(1));
+
     document.getElementById("toStep3").addEventListener("click", () => {
       const name = document.getElementById("coName");
       const email = document.getElementById("coEmail");
@@ -2447,6 +2607,9 @@
         alert("Please fill in all fields to create an account.");
         return;
       }
+      userName = n;
+      localStorage.setItem("ps-name", userName);
+      applyUserName();
       document.getElementById("suSuccess").style.display = "block";
     });
 
@@ -2458,6 +2621,23 @@
         return;
       }
       document.getElementById("liSuccess").style.display = "block";
+      showSection("dashboard");
+    });
+
+    // BUY BUTTONS (make them functional)
+    function goToCheckoutWithPlan(plan) {
+      coPlan.value = plan;
+      renderSummary();
+      showSection("checkout");
+      goStep(1);
+    }
+
+    document.querySelectorAll("[data-action='buy-starter']").forEach((btn) => {
+      btn.addEventListener("click", () => goToCheckoutWithPlan("starter"));
+    });
+
+    document.querySelectorAll("[data-action='buy-bundle']").forEach((btn) => {
+      btn.addEventListener("click", () => goToCheckoutWithPlan("starter_plus"));
     });
 
     // COOKIE BANNER
@@ -2469,9 +2649,7 @@
 
     function hideCookie() {
       cookieInner.classList.remove("show");
-      setTimeout(() => {
-        cookieBar.style.display = "none";
-      }, 260);
+      setTimeout(() => { cookieBar.style.display = "none"; }, 260);
     }
 
     if (!localStorage.getItem(COOKIE_KEY)) {
