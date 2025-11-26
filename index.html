@@ -65,7 +65,7 @@
     .shell {
       max-width: 1360px;
       margin: 0 auto;
-      padding: 16px 22px 100px;
+      padding: 16px 22px 110px;
     }
 
     @media (max-width: 640px) {
@@ -279,13 +279,13 @@
     }
 
     section {
-      margin-bottom: 96px;
+      margin-bottom: 90px;
       padding-top: 8px;
       display: none;
       opacity: 0;
       transform: translateY(18px);
       transition: opacity var(--transition-med), transform var(--transition-med);
-      min-height: 80vh;
+      min-height: 86vh;
     }
 
     #home,
@@ -321,8 +321,8 @@
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.05fr);
       gap: 32px;
       align-items: stretch;
-      min-height: 440px;
-      margin-bottom: 32px;
+      min-height: 430px;
+      margin-bottom: 28px;
       perspective: 1200px;
     }
 
@@ -331,6 +331,12 @@
         grid-template-columns: minmax(0, 1fr);
         min-height: auto;
       }
+    }
+
+    .hero-left,
+    .hero-right {
+      will-change: transform;
+      transition: transform 500ms cubic-bezier(.19,1,.22,1);
     }
 
     .kicker {
@@ -383,21 +389,6 @@
       flex-direction: column;
       gap: 12px;
       transform-origin: center;
-      animation: floatCard 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatCard {
-      from {
-        transform: translate3d(0, 8px, 0) rotateX(4deg);
-      }
-      to {
-        transform: translate3d(0, -4px, 0) rotateX(0deg);
-      }
-    }
-
-    .hero-card:hover {
-      transform: translate3d(0, -6px, 0) scale(1.01);
-      box-shadow: 0 32px 90px rgba(15, 23, 42, 0.35);
     }
 
     /* HERO DASHBOARD PREVIEW */
@@ -538,8 +529,8 @@
       box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
-      transition: transform 220ms cubic-bezier(.19,1,.22,1),
-        box-shadow 220ms cubic-bezier(.19,1,.22,1), border-color 160ms ease-out;
+      transition: transform 260ms cubic-bezier(.19,1,.22,1),
+        box-shadow 260ms cubic-bezier(.19,1,.22,1), border-color 160ms ease-out;
       transform-origin: center;
     }
 
@@ -592,13 +583,78 @@
       display: grid;
       grid-template-columns: 2.1fr 1.1fr;
       gap: 18px;
-      margin-top: 28px;
+      margin-top: 26px;
     }
 
     @media (max-width: 900px) {
       .home-row {
         grid-template-columns: minmax(0, 1fr);
       }
+    }
+
+    /* PRODUCT GALLERY */
+
+    .gallery {
+      margin-top: 34px;
+    }
+
+    .gallery-row {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery-card {
+      min-width: 260px;
+      max-width: 320px;
+      background: radial-gradient(circle at 0 0, #ecfdf5, #e0f2fe);
+      border-radius: 22px;
+      border: 1px solid #dbeafe;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.18);
+      padding: 14px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transform: translateY(0) scale(1);
+      transition: transform 260ms cubic-bezier(.19,1,.22,1), box-shadow 260ms cubic-bezier(.19,1,.22,1);
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px) scale(1.02) rotateX(3deg);
+      box-shadow: 0 32px 100px rgba(15, 23, 42, 0.35);
+    }
+
+    .gallery-img-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #020617;
+      max-height: 170px;
+    }
+
+    .gallery-img-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 450ms cubic-bezier(.19,1,.22,1);
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .gallery-text {
+      font-size: 12px;
+      color: var(--fg-soft);
     }
 
     /* DASHBOARD SECTION */
@@ -926,6 +982,42 @@
       border-bottom: none;
     }
 
+    /* Usage stories under dashboard */
+    .usage-stories {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .usage-stories {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .usage-story {
+      border-radius: 18px;
+      padding: 10px 12px;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #eef2ff);
+      border: 1px solid #dbeafe;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .usage-story-title {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .usage-story-metric {
+      font-size: 13px;
+      font-weight: 600;
+      color: #16a34a;
+    }
+
     /* PRICING / LAYOUT */
 
     .grid-two {
@@ -974,6 +1066,19 @@
       background: #ffffff;
       color: #111827;
       font-weight: 500;
+    }
+
+    .pricing-bottom {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-bottom {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     /* FORMS */
@@ -1088,6 +1193,22 @@
 
     .step-panel.active {
       display: block;
+    }
+
+    .security-strip {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--fg-soft);
+    }
+
+    .badge-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: #f9fafb;
     }
 
     /* FOOTER + COOKIES */
@@ -1248,8 +1369,8 @@
     <main>
       <!-- HOME -->
       <section id="home" class="active show">
-        <div class="hero">
-          <div class="reveal in-view">
+        <div class="hero" id="hero">
+          <div class="hero-left reveal in-view">
             <div class="kicker">For shared homes & student flats</div>
             <h1>Split energy bills without awkward chats or guesswork.</h1>
             <p class="hero-sub">
@@ -1265,32 +1386,34 @@
             </div>
           </div>
 
-          <div class="hero-card reveal">
-            <div class="hero-dashboard">
-              <div class="hero-dash-header">
-                <div>
-                  <div class="hero-dash-title">Flat 12, King Street</div>
-                  <div style="font-size:11px;color:#9ca3af;">Current month preview</div>
+          <div class="hero-right">
+            <div class="hero-card reveal">
+              <div class="hero-dashboard">
+                <div class="hero-dash-header">
+                  <div>
+                    <div class="hero-dash-title">Flat 12, King Street</div>
+                    <div style="font-size:11px;color:#9ca3af;">Current month preview</div>
+                  </div>
+                  <div class="hero-dash-chip">Live usage</div>
                 </div>
-                <div class="hero-dash-chip">Live usage</div>
-              </div>
 
-              <div class="hero-dash-tabs">
-                <button class="hero-dash-tab active" data-mode="fair">Fair split</button>
-                <button class="hero-dash-tab" data-mode="flat">Flat split</button>
-              </div>
+                <div class="hero-dash-tabs">
+                  <button class="hero-dash-tab active" data-mode="fair">Fair split</button>
+                  <button class="hero-dash-tab" data-mode="flat">Flat split</button>
+                </div>
 
-              <div class="hero-dash-main">
-                <div class="hero-dash-amounts" id="heroAmounts"></div>
-                <div>
-                  <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">
-                    Estimated share this month
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" id="heroFairBar"></div>
-                  </div>
-                  <div class="hero-note" id="heroNote">
-                    With PowerSplit, heavy users pay more and light users pay less. The total bill stays the same.
+                <div class="hero-dash-main">
+                  <div class="hero-dash-amounts" id="heroAmounts"></div>
+                  <div>
+                    <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">
+                      Estimated share this month
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" id="heroFairBar"></div>
+                    </div>
+                    <div class="hero-note" id="heroNote">
+                      With PowerSplit, heavy users pay more and light users pay less. The total bill stays the same.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1307,7 +1430,7 @@
             <div class="card">
               <h3>Per-device tracking</h3>
               <p class="muted">
-                Smart plugs sit on top of your biggest energy users — heaters, gaming PCs, tumble dryers.
+                Smart plugs sit on your biggest energy users — heaters, gaming PCs, tumble dryers.
                 Each one is linked to a person or shared.
               </p>
             </div>
@@ -1347,6 +1470,52 @@
             <button class="btn soft" data-section="dashboard" style="margin-top:8px;width:100%;">Open dashboard</button>
           </div>
         </div>
+
+        <!-- PRODUCT GALLERY with photos -->
+        <div class="gallery reveal">
+          <h2 class="section-title" style="margin-bottom:10px;">See the Starter Kit</h2>
+          <p class="section-lead" style="margin-bottom:16px;">
+            Real hardware, real app. These visuals show what arrives in the box and how the dashboard looks on day one.
+          </p>
+          <div class="gallery-row">
+            <div class="gallery-card">
+              <div class="gallery-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
+                  alt="Smart plug and cable on desk"
+                />
+              </div>
+              <div class="gallery-title">Smart plugs that snap into place</div>
+              <div class="gallery-text">
+                Compact plugs that sit between the socket and device. No tools, no electrician required.
+              </div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+                  alt="Phone showing an app dashboard"
+                />
+              </div>
+              <div class="gallery-title">Live dashboard on your phone</div>
+              <div class="gallery-text">
+                Everyone in the flat can see their share in real-time: no more screenshots or mystery numbers.
+              </div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1517059224940-d4af9eec41e5?auto=format&fit=crop&w=900&q=80"
+                  alt="Cardboard shipping box"
+                />
+              </div>
+              <div class="gallery-title">Starter Kit in one box</div>
+              <div class="gallery-text">
+                Plugs, quick-start guide and a QR code to connect your flat in under ten minutes.
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- DASHBOARD SECTION -->
@@ -1358,7 +1527,7 @@
           </p>
         </div>
 
-        <div class="dash-shell reveal">
+        <div class="dash-shell reveal" id="dashShell">
           <aside class="dash-sidebar">
             <div class="dash-logo">Flat 12, King Street</div>
             <div class="dash-nav">
@@ -1420,6 +1589,25 @@
                   <div class="table" id="dashLowerRightTable"></div>
                 </div>
               </div>
+
+              <!-- Usage stories strip to fill extra height -->
+              <div class="usage-stories">
+                <div class="usage-story">
+                  <div class="usage-story-title">Gaming night spike</div>
+                  <div class="usage-story-metric">+18% usage · 7–11pm</div>
+                  <div>PC + monitor and console lit up. PowerSplit tags the spike to the right people automatically.</div>
+                </div>
+                <div class="usage-story">
+                  <div class="usage-story-title">Laundry day</div>
+                  <div class="usage-story-metric">Dryer 3× usual</div>
+                  <div>Instead of arguing about “who used it most”, the bill already reflects each run of the dryer.</div>
+                </div>
+                <div class="usage-story">
+                  <div class="usage-story-title">Weekend away</div>
+                  <div class="usage-story-metric">You · −22% usage</div>
+                  <div>When someone is away, their share drops in the app — no awkward “can I pay less this month?” chat.</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1476,6 +1664,29 @@
                 <button class="btn soft" data-section="checkout">Add to order</button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Fill the rest of page with a little timeline -->
+        <div class="pricing-bottom reveal">
+          <div class="card">
+            <h3>1. Order today</h3>
+            <p class="muted">
+              Place your order through this demo checkout. In a real launch, payment would be handled by a secure
+              provider like Stripe.
+            </p>
+          </div>
+          <div class="card">
+            <h3>2. Ship tomorrow</h3>
+            <p class="muted">
+              Kits are picked, packed and shipped from a UK warehouse with tracking. Typical delivery is 1–2 working days.
+            </p>
+          </div>
+          <div class="card">
+            <h3>3. Plug & go</h3>
+            <p class="muted">
+              Scan the QR code in the box, plug in devices and invite your housemates. The dashboard lights up in minutes.
+            </p>
           </div>
         </div>
       </section>
@@ -1570,6 +1781,11 @@
                 <button class="btn primary" id="coSubmit" style="width:100%;margin-top:4px;">Pay & place order</button>
                 <div id="coSuccess" class="success" style="display:none;">
                   Order confirmed. A receipt has been generated in this demo checkout.
+                </div>
+
+                <div class="security-strip">
+                  <span class="badge-pill">Demo only</span>
+                  <span>Cards would normally be processed by providers like Stripe, Visa and Mastercard.</span>
                 </div>
               </div>
             </div>
@@ -1825,6 +2041,35 @@
       });
     });
     renderHero("fair");
+
+    // 3D-ish parallax on hero and dashboard
+    function addParallax(containerSelector, leftSelector, rightSelector) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      const left = container.querySelector(leftSelector);
+      const right = container.querySelector(rightSelector);
+      if (!left || !right) return;
+
+      container.addEventListener("pointermove", (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        const rotateX = y * -6;
+        const rotateY = x * 8;
+
+        left.style.transform = `translate3d(${x * -10}px, ${y * -8}px, 0)`;
+        right.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${x * 12}px, ${y * 10}px, 0)`;
+      });
+
+      container.addEventListener("pointerleave", () => {
+        left.style.transform = "";
+        right.style.transform = "";
+      });
+    }
+
+    addParallax("#hero", ".hero-left", ".hero-right");
+    addParallax("#dashShell", ".dash-sidebar", ".dash-main");
 
     // DASHBOARD DATA
     const dashNavButtons = document.querySelectorAll(".dash-nav button");
@@ -2215,7 +2460,7 @@
       document.getElementById("liSuccess").style.display = "block";
     });
 
-    // COOKIE BANNER (new key so it shows again)
+    // COOKIE BANNER
     const cookieBar = document.getElementById("cookieBar");
     const cookieInner = document.getElementById("cookieInner");
     const cookieAccept = document.getElementById("cookieAccept");
