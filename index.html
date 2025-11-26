@@ -63,9 +63,9 @@
     }
 
     .shell {
-      max-width: 1180px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 14px 16px 80px;
+      padding: 14px 18px 80px;
     }
 
     @media (max-width: 640px) {
@@ -83,7 +83,7 @@
       margin-bottom: 26px;
       background: var(--bg-header);
       border-radius: 999px;
-      padding: 8px 16px;
+      padding: 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -94,6 +94,7 @@
       opacity: 0;
       transform: translateY(-18px);
       animation: headerIn 450ms var(--transition-med) forwards;
+      backdrop-filter: blur(16px);
     }
 
     @keyframes headerIn {
@@ -156,8 +157,23 @@
       font-size: 13px;
       padding: 6px 12px;
       cursor: pointer;
+      position: relative;
       transition: color var(--transition-fast), background var(--transition-fast),
         border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    nav button::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 4px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      transform-origin: center;
+      transform: scaleX(0);
+      transition: transform 220ms cubic-bezier(.19,1,.22,1);
     }
 
     nav button:hover {
@@ -170,6 +186,10 @@
       background: rgba(248, 250, 252, 0.08);
       border-color: rgba(148, 163, 184, 0.8);
       color: #ffffff;
+    }
+
+    nav button.active::after {
+      transform: scaleX(1);
     }
 
     .header-cta {
@@ -258,7 +278,7 @@
     }
 
     section {
-      margin-bottom: 70px;
+      margin-bottom: 80px;
       display: none;
       opacity: 0;
       transform: translateY(18px);
@@ -274,15 +294,9 @@
       transform: translateY(0);
     }
 
-    /* big sections feel full screen */
     #home,
     #dashboard {
-      min-height: 88vh;
-      display: none;
-    }
-    #home.active,
-    #dashboard.active {
-      display: block;
+      min-height: 90vh;
     }
 
     .reveal {
@@ -467,7 +481,6 @@
     .progress-fill {
       position: absolute;
       inset: 0;
-      width: 40%;
       background: linear-gradient(90deg, #16a34a, #22c55e);
       transform-origin: left;
       transform: scaleX(0.35);
@@ -512,6 +525,30 @@
       box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
+      transition: transform 220ms cubic-bezier(.19,1,.22,1),
+        box-shadow 220ms cubic-bezier(.19,1,.22,1), border-color 160ms ease-out;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.08), transparent 55%);
+      opacity: 0;
+      transition: opacity 220ms cubic-bezier(.19,1,.22,1), transform 220ms cubic-bezier(.19,1,.22,1);
+      transform: translate3d(-10px, -10px, 0);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.18);
+      border-color: rgba(129, 140, 248, 0.45);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
 
     .card h3 {
@@ -541,7 +578,7 @@
       display: grid;
       grid-template-columns: 2.1fr 1fr;
       gap: 16px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     @media (max-width: 900px) {
@@ -554,13 +591,13 @@
 
     .dash-shell {
       background: var(--bg-surface);
-      border-radius: 28px;
+      border-radius: 30px;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-strong);
       display: grid;
-      grid-template-columns: 0.95fr 2.1fr;
+      grid-template-columns: 0.9fr 2.1fr;
       overflow: hidden;
-      min-height: 360px;
+      min-height: 380px;
     }
 
     @media (max-width: 900px) {
@@ -572,21 +609,21 @@
     .dash-sidebar {
       background: radial-gradient(circle at top, #020617, #020617 60%, #020617 100%);
       color: #e5e7eb;
-      padding: 16px;
+      padding: 16px 14px;
       border-right: 1px solid rgba(30, 64, 175, 0.7);
     }
 
     .dash-logo {
       font-size: 11px;
       color: #9ca3af;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .dash-nav {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .dash-nav button {
@@ -615,13 +652,13 @@
     }
 
     .dash-sidebar-footer {
-      margin-top: 16px;
+      margin-top: 18px;
       font-size: 11px;
       color: #9ca3af;
     }
 
     .dash-main {
-      padding: 18px;
+      padding: 18px 18px 20px;
       background: radial-gradient(circle at top right, #e0f2fe 0, #eef2ff 40%, #f9fafb 100%);
     }
 
@@ -630,7 +667,7 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .dash-main-title {
@@ -648,13 +685,152 @@
     }
 
     .dash-main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .usage-wrap {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 14px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr);
+      gap: 18px;
+      align-items: center;
     }
 
     @media (max-width: 900px) {
-      .dash-main-content {
+      .usage-wrap {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .usage-metrics {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 13px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .usage-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--fg-soft);
+      margin-bottom: 4px;
+    }
+
+    .usage-main {
+      font-size: 28px;
+      font-weight: 700;
+      color: #020617;
+      margin-bottom: 4px;
+    }
+
+    .usage-sub {
+      font-size: 12px;
+      color: var(--fg-soft);
+      margin-bottom: 10px;
+    }
+
+    .usage-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .usage-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: #f9fafb;
+      color: var(--fg-soft);
+    }
+
+    .usage-visual {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 10px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .usage-bar-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--fg-soft);
+      align-items: baseline;
+    }
+
+    .usage-bar-track {
+      width: 100%;
+      height: 26px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      display: flex;
+      box-shadow: inset 0 1px 2px rgba(148, 163, 184, 0.7);
+    }
+
+    .usage-fill {
+      height: 100%;
+      width: 0;
+      transform-origin: left;
+      transition: width 480ms cubic-bezier(.19,1,.22,1);
+    }
+
+    .u-col-0 {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+
+    .u-col-1 {
+      background: linear-gradient(90deg, #38bdf8, #2563eb);
+    }
+
+    .u-col-2 {
+      background: linear-gradient(90deg, #f97316, #ea580c);
+    }
+
+    .u-col-3 {
+      background: linear-gradient(90deg, #a855f7, #7c3aed);
+    }
+
+    .usage-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 11px;
+      color: var(--fg-soft);
+      margin-top: 4px;
+    }
+
+    .usage-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .usage-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .dash-lower-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .dash-lower-row {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -669,6 +845,7 @@
       transform: translateY(8px);
       transition: opacity 220ms cubic-bezier(.19,1,.22,1),
         transform 220ms cubic-bezier(.19,1,.22,1);
+      box-shadow: var(--shadow-soft);
     }
 
     .dash-panel.active {
@@ -679,72 +856,6 @@
     .dash-panel h4 {
       margin: 0 0 6px;
       font-size: 14px;
-    }
-
-    .dash-pill-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
-    .chip {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border-strong);
-      background: #f9fafb;
-      color: var(--fg-soft);
-    }
-
-    .chip.strong {
-      border-color: #22c55e;
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      margin-top: 6px;
-      min-height: 120px;
-    }
-
-    .bar-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .bar-track {
-      width: 100%;
-      height: 90px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-      position: relative;
-      box-shadow: inset 0 1px 2px rgba(148, 163, 184, 0.6);
-    }
-
-    .bar-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(180deg, #22c55e, #15803d);
-      border-radius: inherit;
-      transform-origin: bottom;
-      transform: scaleY(0.1);
-      transition: transform 380ms cubic-bezier(.19,1,.22,1);
-    }
-
-    .bar-label {
-      font-size: 11px;
-      color: var(--fg-soft);
     }
 
     .table {
@@ -1132,8 +1243,7 @@
         <div class="reveal">
           <h2 class="section-title">Dashboard for people who already use PowerSplit</h2>
           <p class="section-lead">
-            This view shows how an existing household sees their data: overview at the top, then quick switches for
-            devices, people and statements. The bars show how much each person or device contributes.
+            Live usage, fair split and statements — in one clean view. Tap between Overview, Devices, People and Statements.
           </p>
         </div>
 
@@ -1171,19 +1281,33 @@
             </div>
 
             <div class="dash-main-content">
-              <div class="dash-panel active" id="dashLeft">
-                <h4 id="dashLeftTitle">Household cost split</h4>
-                <div class="dash-pill-row">
-                  <span class="chip strong">Total · £95.30</span>
-                  <span class="chip">Electric only</span>
-                  <span class="chip">3 people</span>
+              <div class="usage-wrap">
+                <div class="usage-metrics">
+                  <div class="usage-label" id="usageLabel">Usage this month</div>
+                  <div class="usage-main" id="usageMain">£95.30</div>
+                  <div class="usage-sub" id="usageSub">312 kWh · electric only</div>
+                  <div class="usage-meta" id="usageMeta"></div>
                 </div>
-                <div class="bar-chart" id="dashBars"></div>
+
+                <div class="usage-visual">
+                  <div class="usage-bar-label-row">
+                    <span id="usageBarTitle">Bill split across people</span>
+                    <span id="usageBarTotal">Total £95.30</span>
+                  </div>
+                  <div class="usage-bar-track" id="usageBar"></div>
+                  <div class="usage-legend" id="usageLegend"></div>
+                </div>
               </div>
 
-              <div class="dash-panel active" id="dashRight">
-                <h4 id="dashRightTitle">This month at a glance</h4>
-                <div class="table" id="dashTable"></div>
+              <div class="dash-lower-row">
+                <div class="dash-panel active" id="dashLowerLeft">
+                  <h4 id="dashLowerLeftTitle">Top devices</h4>
+                  <div class="table" id="dashLowerLeftTable"></div>
+                </div>
+                <div class="dash-panel active" id="dashLowerRight">
+                  <h4 id="dashLowerRightTitle">People this month</h4>
+                  <div class="table" id="dashLowerRightTable"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -1195,8 +1319,7 @@
         <div class="reveal">
           <h2 class="section-title">Pricing without small print</h2>
           <p class="section-lead">
-            One kit per property, optional subscription if you want deeper history and export tools. Everyone in the
-            house can use the app.
+            One kit per property, optional subscription if you want deeper history and export tools.
           </p>
         </div>
 
@@ -1546,116 +1669,219 @@
     // DASHBOARD DATA
     const dashNavButtons = document.querySelectorAll(".dash-nav button");
     const dashTitle = document.getElementById("dashTitle");
-    const dashLeftTitle = document.getElementById("dashLeftTitle");
-    const dashRightTitle = document.getElementById("dashRightTitle");
-    const dashBars = document.getElementById("dashBars");
-    const dashTable = document.getElementById("dashTable");
+    const usageLabel = document.getElementById("usageLabel");
+    const usageMain = document.getElementById("usageMain");
+    const usageSub = document.getElementById("usageSub");
+    const usageMeta = document.getElementById("usageMeta");
+    const usageBarTitle = document.getElementById("usageBarTitle");
+    const usageBarTotal = document.getElementById("usageBarTotal");
+    const usageBar = document.getElementById("usageBar");
+    const usageLegend = document.getElementById("usageLegend");
+    const dashLowerLeftTitle = document.getElementById("dashLowerLeftTitle");
+    const dashLowerRightTitle = document.getElementById("dashLowerRightTitle");
+    const dashLowerLeftTable = document.getElementById("dashLowerLeftTable");
+    const dashLowerRightTable = document.getElementById("dashLowerRightTable");
 
     const dashConfigs = {
       overview: {
         title: "Overview · October bill",
-        leftTitle: "Household cost split",
-        rightTitle: "This month at a glance",
-        bars: [
-          { name: "You", value: 36.8, height: 88 },
-          { name: "Sam", value: 30.1, height: 72 },
-          { name: "Riley", value: 28.4, height: 68 }
+        usageLabel: "Usage this month",
+        usageMain: "£95.30",
+        usageSub: "312 kWh · electric only",
+        usageMeta: [
+          { label: "People", value: "3" },
+          { label: "Standing charge", value: "£14.40" },
+          { label: "Shared devices", value: "£28.50" }
         ],
-        table: [
-          ["Total bill", "£95.30"],
-          ["Shared devices", "£28.50"],
-          ["Private devices", "£52.40"],
-          ["Standing charge", "£14.40"]
+        barTitle: "Bill split across people",
+        barTotal: "Total £95.30",
+        segments: [
+          { label: "You", percent: 39, amount: "£36.80" },
+          { label: "Sam", percent: 32, amount: "£30.10" },
+          { label: "Riley", percent: 29, amount: "£28.40" }
+        ],
+        lowerLeftTitle: "Top devices",
+        lowerLeftRows: [
+          ["Heater", "36% of usage"],
+          ["PC & monitor", "27% of usage"],
+          ["Dryer", "18% of usage"],
+          ["Fridge & base load", "19% of usage"]
+        ],
+        lowerRightTitle: "People this month",
+        lowerRightRows: [
+          ["You", "Heavy · heater + PC"],
+          ["Sam", "Medium · PC, monitor"],
+          ["Riley", "Light · mostly shared"],
+          ["Shared", "Fridge, lighting"]
         ]
       },
       devices: {
         title: "Devices · energy hotspots",
-        leftTitle: "Biggest devices this month",
-        rightTitle: "Where costs go",
-        bars: [
-          { name: "Heater", value: 18.6, height: 100 },
-          { name: "PC & monitor", value: 14.2, height: 80 },
-          { name: "Dryer", value: 9.8, height: 60 }
+        usageLabel: "Devices this month",
+        usageMain: "312 kWh",
+        usageSub: "Tracked from 4 smart plugs",
+        usageMeta: [
+          { label: "Heater", value: "36%" },
+          { label: "PC + monitor", value: "27%" },
+          { label: "Dryer", value: "18%" }
         ],
-        table: [
-          ["Kitchen & fridge", "£12.10 (shared)"],
-          ["Bedroom heaters", "£34.80 (mixed)"],
-          ["Electronics", "£9.60 (mixed)"],
-          ["Other base load", "£7.40 (shared)"]
+        barTitle: "Usage split by device",
+        barTotal: "Total 312 kWh",
+        segments: [
+          { label: "Heater", percent: 36, amount: "113 kWh" },
+          { label: "PC + monitor", percent: 27, amount: "84 kWh" },
+          { label: "Dryer", percent: 18, amount: "56 kWh" },
+          { label: "Other / base", percent: 19, amount: "59 kWh" }
+        ],
+        lowerLeftTitle: "Shared devices",
+        lowerLeftRows: [
+          ["Kitchen & fridge", "Always on · shared"],
+          ["Hallway lighting", "Timed schedule"],
+          ["Wi-Fi & router", "Low draw"]
+        ],
+        lowerRightTitle: "Ideas to save",
+        lowerRightRows: [
+          ["Heater", "1°C lower · ~8% saving"],
+          ["Dryer", "Shift to off-peak"],
+          ["PC", "Sleep after 15 minutes"],
+          ["All", "Turn off at wall"]
         ]
       },
       people: {
         title: "People · fair split breakdown",
-        leftTitle: "People vs devices",
-        rightTitle: "Per-person summary",
-        bars: [
-          { name: "You", value: 36.8, height: 100 },
-          { name: "Sam", value: 30.1, height: 82 },
-          { name: "Riley", value: 28.4, height: 78 }
+        usageLabel: "Per-person cost",
+        usageMain: "£31.77 avg",
+        usageSub: "Fair split · 3 people",
+        usageMeta: [
+          { label: "You", value: "£36.80" },
+          { label: "Sam", value: "£30.10" },
+          { label: "Riley", value: "£28.40" }
         ],
-        table: [
-          ["You", "Heater, PC · £36.80"],
-          ["Sam", "PC, monitor · £30.10"],
-          ["Riley", "Light devices · £28.40"],
-          ["Shared", "Fridge, lighting · split evenly"]
+        barTitle: "Fair split vs average",
+        barTotal: "Average £31.77",
+        segments: [
+          { label: "You", percent: 42, amount: "£36.80" },
+          { label: "Sam", percent: 32, amount: "£30.10" },
+          { label: "Riley", percent: 26, amount: "£28.40" }
+        ],
+        lowerLeftTitle: "Private devices",
+        lowerLeftRows: [
+          ["You", "Heater, PC"],
+          ["Sam", "PC, monitor"],
+          ["Riley", "Console, TV"],
+          ["Shared", "Fridge, lighting"]
+        ],
+        lowerRightTitle: "Settle-up preview",
+        lowerRightRows: [
+          ["You", "Owes £36.80"],
+          ["Sam", "Owes £30.10"],
+          ["Riley", "Owes £28.40"],
+          ["Group", "Settle online"]
         ]
       },
       statements: {
         title: "Statements · history",
-        leftTitle: "Last 3 months",
-        rightTitle: "Export & share",
-        bars: [
-          { name: "Aug", value: 82.4, height: 82 },
-          { name: "Sep", value: 90.1, height: 90 },
-          { name: "Oct", value: 95.3, height: 100 }
+        usageLabel: "Recent bills",
+        usageMain: "3 months",
+        usageSub: "Aug · Sep · Oct",
+        usageMeta: [
+          { label: "Average", value: "£89.60" },
+          { label: "Highest", value: "£95.30" },
+          { label: "Lowest", value: "£82.40" }
         ],
-        table: [
-          ["August", "Settled · exported as PDF"],
-          ["September", "Settled · shared to group chat"],
-          ["October", "In progress · due 28th"],
-          ["Exports", "CSV & PDF available per month"]
+        barTitle: "Bill trend",
+        barTotal: "Last 3 months",
+        segments: [
+          { label: "Aug", percent: 86, amount: "£82.40" },
+          { label: "Sep", percent: 94, amount: "£90.10" },
+          { label: "Oct", percent: 100, amount: "£95.30" }
+        ],
+        lowerLeftTitle: "Status",
+        lowerLeftRows: [
+          ["October", "Open · due 28th"],
+          ["September", "Paid · PDF saved"],
+          ["August", "Paid · CSV export"],
+          ["Older", "Archived"]
+        ],
+        lowerRightTitle: "Exports",
+        lowerRightRows: [
+          ["Download PDF", "For landlords"],
+          ["Download CSV", "For spreadsheets"],
+          ["Share link", "Send to group chat"],
+          ["Resend email", "Last summary"]
         ]
       }
     };
 
     function renderDashboard(mode) {
       const cfg = dashConfigs[mode];
-      dashTitle.textContent = cfg.title;
-      dashLeftTitle.textContent = cfg.leftTitle;
-      dashRightTitle.textContent = cfg.rightTitle;
 
-      dashBars.innerHTML = "";
-      cfg.bars.forEach((b) => {
-        const item = document.createElement("div");
-        item.className = "bar-item";
-        item.innerHTML = `
-          <div>${b.name}</div>
-          <div class="bar-track">
-            <div class="bar-fill" data-height="${b.height}"></div>
-          </div>
-          <div class="bar-label">£${b.value.toFixed(2)}</div>
-        `;
-        dashBars.appendChild(item);
+      dashTitle.textContent = cfg.title;
+      usageLabel.textContent = cfg.usageLabel;
+      usageMain.textContent = cfg.usageMain;
+      usageSub.textContent = cfg.usageSub;
+
+      usageMeta.innerHTML = "";
+      cfg.usageMeta.forEach((m) => {
+        const pill = document.createElement("div");
+        pill.className = "usage-pill";
+        pill.textContent = `${m.label} · ${m.value}`;
+        usageMeta.appendChild(pill);
       });
 
-      // animate fills after DOM update
-      requestAnimationFrame(() => {
-        document.querySelectorAll(".bar-fill").forEach((bar) => {
-          const h = bar.getAttribute("data-height");
-          bar.style.transform = `scaleY(${h / 100})`;
+      usageBarTitle.textContent = cfg.barTitle;
+      usageBarTotal.textContent = cfg.barTotal;
+
+      usageBar.innerHTML = "";
+      usageLegend.innerHTML = "";
+
+      cfg.segments.forEach((seg, idx) => {
+        const fill = document.createElement("div");
+        fill.className = `usage-fill u-col-${idx}`;
+        fill.style.width = "0%";
+        usageBar.appendChild(fill);
+
+        // legend
+        const legend = document.createElement("div");
+        legend.className = "usage-legend-item";
+        legend.innerHTML = `
+          <span class="usage-dot u-col-${idx}"></span>
+          <span>${seg.label}</span>
+          <span>· ${seg.percent}%</span>
+          <span>· ${seg.amount}</span>
+        `;
+        usageLegend.appendChild(legend);
+
+        // animate width
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            fill.style.width = seg.percent + "%";
+          });
         });
       });
 
-      dashTable.innerHTML = "";
-      cfg.table.forEach(([label, value]) => {
+      // lower tables
+      dashLowerLeftTitle.textContent = cfg.lowerLeftTitle;
+      dashLowerRightTitle.textContent = cfg.lowerRightTitle;
+      dashLowerLeftTable.innerHTML = "";
+      dashLowerRightTable.innerHTML = "";
+
+      cfg.lowerLeftRows.forEach(([label, value]) => {
         const row = document.createElement("div");
         row.className = "table-row";
         row.innerHTML = `<span>${label}</span><span>${value}</span>`;
-        dashTable.appendChild(row);
+        dashLowerLeftTable.appendChild(row);
       });
 
-      document.getElementById("dashLeft").classList.add("active");
-      document.getElementById("dashRight").classList.add("active");
+      cfg.lowerRightRows.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.className = "table-row";
+        row.innerHTML = `<span>${label}</span><span>${value}</span>`;
+        dashLowerRightTable.appendChild(row);
+      });
+
+      document.getElementById("dashLowerLeft").classList.add("active");
+      document.getElementById("dashLowerRight").classList.add("active");
     }
 
     dashNavButtons.forEach((btn) => {
