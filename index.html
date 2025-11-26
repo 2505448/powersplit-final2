@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="PowerSplit fairly splits energy bills in shared homes with per-device tracking, dashboards and a smooth online checkout."
+    content="PowerSplit fairly splits energy bills in shared homes with per-device tracking, live dashboards and a smooth online checkout."
   />
 
   <style>
@@ -36,7 +36,7 @@
       --shadow-strong: 0 26px 80px rgba(15, 23, 42, 0.2);
 
       --transition-fast: 160ms ease-out;
-      --transition-med: 220ms ease-out;
+      --transition-med: 260ms cubic-bezier(.19,1,.22,1);
     }
 
     * {
@@ -92,8 +92,8 @@
       border: 1px solid rgba(148, 163, 184, 0.55);
       box-shadow: 0 18px 46px rgba(15, 23, 42, 0.65);
       opacity: 0;
-      transform: translateY(-14px);
-      animation: headerIn 400ms ease-out forwards;
+      transform: translateY(-18px);
+      animation: headerIn 450ms var(--transition-med) forwards;
     }
 
     @keyframes headerIn {
@@ -208,7 +208,7 @@
 
     .btn.primary:hover {
       background: linear-gradient(135deg, #22c55e, #4ade80);
-      box-shadow: 0 24px 70px rgba(21, 128, 61, 0.65);
+      box-shadow: 0 26px 80px rgba(21, 128, 61, 0.7);
       transform: translateY(-1px);
     }
 
@@ -227,29 +227,41 @@
       box-shadow: none;
     }
 
+    .btn.outline-light {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+      box-shadow: none;
+      padding-inline: 12px;
+    }
+
+    .btn.outline-light:hover {
+      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.8);
+    }
+
     @media (max-width: 880px) {
       header {
         flex-wrap: wrap;
         justify-content: center;
         border-radius: 20px;
       }
-
       .header-cta {
         justify-content: center;
       }
     }
 
-    /* SECTIONS / ANIMATION */
+    /* SECTIONS */
 
     main {
       margin-top: 4px;
     }
 
     section {
-      margin-bottom: 60px;
+      margin-bottom: 70px;
       display: none;
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(18px);
       transition: opacity var(--transition-med), transform var(--transition-med);
     }
 
@@ -262,10 +274,22 @@
       transform: translateY(0);
     }
 
+    /* big sections feel full screen */
+    #home,
+    #dashboard {
+      min-height: 88vh;
+      display: none;
+    }
+    #home.active,
+    #dashboard.active {
+      display: block;
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity 260ms ease-out, transform 260ms ease-out;
+      transition: opacity 280ms var(--transition-med),
+        transform 280ms var(--transition-med);
     }
 
     .reveal.in-view {
@@ -281,7 +305,7 @@
       gap: 30px;
       align-items: stretch;
       min-height: 380px;
-      margin-bottom: 30px;
+      margin-bottom: 32px;
     }
 
     @media (max-width: 900px) {
@@ -339,6 +363,14 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      transform: translateY(6px);
+      animation: floatCard 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCard {
+      to {
+        transform: translateY(-4px);
+      }
     }
 
     /* HERO DASHBOARD PREVIEW */
@@ -422,10 +454,6 @@
       font-weight: 600;
     }
 
-    .hero-progress {
-      margin-top: 6px;
-    }
-
     .progress-bar {
       width: 100%;
       height: 16px;
@@ -441,22 +469,15 @@
       inset: 0;
       width: 40%;
       background: linear-gradient(90deg, #16a34a, #22c55e);
-      transition: width 260ms ease-out;
+      transform-origin: left;
+      transform: scaleX(0.35);
+      transition: transform 420ms cubic-bezier(.19,1,.22,1);
     }
 
     .hero-note {
       font-size: 11px;
       color: #a5b4fc;
       margin-top: 4px;
-    }
-
-    .pill-badge {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: var(--radius-pill);
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      border: 1px solid rgba(22, 163, 74, 0.6);
     }
 
     .section-title {
@@ -516,8 +537,6 @@
       margin-top: 6px;
     }
 
-    /* HOME EXTRA ROW */
-
     .home-row {
       display: grid;
       grid-template-columns: 2.1fr 1fr;
@@ -533,29 +552,15 @@
 
     /* DASHBOARD SECTION */
 
-    .dashboard-layout {
-      display: grid;
-      grid-template-columns: 0.95fr 2.1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 900px) {
-      .dashboard-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
     .dash-shell {
       background: var(--bg-surface);
-      border-radius: 24px;
+      border-radius: 28px;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-strong);
       display: grid;
       grid-template-columns: 0.95fr 2.1fr;
-      gap: 0;
       overflow: hidden;
-      min-height: 340px;
+      min-height: 360px;
     }
 
     @media (max-width: 900px) {
@@ -565,9 +570,9 @@
     }
 
     .dash-sidebar {
-      background: radial-gradient(circle at top, #0f172a, #020617);
+      background: radial-gradient(circle at top, #020617, #020617 60%, #020617 100%);
       color: #e5e7eb;
-      padding: 14px;
+      padding: 16px;
       border-right: 1px solid rgba(30, 64, 175, 0.7);
     }
 
@@ -585,12 +590,12 @@
     }
 
     .dash-nav button {
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid transparent;
       background: transparent;
       color: #9ca3af;
       font-size: 12px;
-      padding: 6px 8px;
+      padding: 7px 9px;
       display: flex;
       justify-content: space-between;
       cursor: pointer;
@@ -603,20 +608,20 @@
     }
 
     .dash-nav button.active {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.95);
       border-color: rgba(148, 163, 184, 0.8);
       color: #e5e7eb;
-      transform: translateX(1px);
+      transform: translateX(2px);
     }
 
     .dash-sidebar-footer {
-      margin-top: 14px;
+      margin-top: 16px;
       font-size: 11px;
       color: #9ca3af;
     }
 
     .dash-main {
-      padding: 16px;
+      padding: 18px;
       background: radial-gradient(circle at top right, #e0f2fe 0, #eef2ff 40%, #f9fafb 100%);
     }
 
@@ -625,11 +630,11 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .dash-main-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
     }
 
@@ -644,9 +649,8 @@
 
     .dash-main-content {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
       gap: 14px;
-      align-items: stretch;
     }
 
     @media (max-width: 900px) {
@@ -656,14 +660,15 @@
     }
 
     .dash-panel {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 18px;
       border: 1px solid var(--border-subtle);
       padding: 12px;
       height: 100%;
       opacity: 0;
       transform: translateY(8px);
-      transition: opacity 180ms ease-out, transform 180ms ease-out;
+      transition: opacity 220ms cubic-bezier(.19,1,.22,1),
+        transform 220ms cubic-bezier(.19,1,.22,1);
     }
 
     .dash-panel.active {
@@ -699,26 +704,30 @@
     }
 
     .bar-chart {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
       margin-top: 6px;
+      min-height: 120px;
     }
 
     .bar-item {
+      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 4px;
       font-size: 11px;
+      text-align: center;
     }
 
     .bar-track {
       width: 100%;
-      height: 56px;
+      height: 90px;
       border-radius: 999px;
       background: #e5e7eb;
       overflow: hidden;
       position: relative;
+      box-shadow: inset 0 1px 2px rgba(148, 163, 184, 0.6);
     }
 
     .bar-fill {
@@ -729,8 +738,8 @@
       background: linear-gradient(180deg, #22c55e, #15803d);
       border-radius: inherit;
       transform-origin: bottom;
-      transform: scaleY(0.2);
-      transition: transform 260ms ease-out;
+      transform: scaleY(0.1);
+      transition: transform 380ms cubic-bezier(.19,1,.22,1);
     }
 
     .bar-label {
@@ -754,7 +763,7 @@
       border-bottom: none;
     }
 
-    /* PRICING */
+    /* PRICING / LAYOUT */
 
     .grid-two {
       display: grid;
@@ -804,7 +813,7 @@
       font-weight: 500;
     }
 
-    /* FORMS / CHECKOUT */
+    /* FORMS */
 
     .field {
       margin-bottom: 10px;
@@ -958,7 +967,8 @@
       gap: 10px;
       transform: translateY(120%);
       opacity: 0;
-      transition: transform 260ms ease-out, opacity 260ms ease-out;
+      transition: transform 260ms cubic-bezier(.19,1,.22,1),
+        opacity 260ms cubic-bezier(.19,1,.22,1);
       box-shadow: 0 -10px 35px rgba(15, 23, 42, 0.7);
     }
 
@@ -977,17 +987,13 @@
       flex-wrap: wrap;
     }
 
-    .btn.outline-light {
-      background: transparent;
-      border-color: rgba(148, 163, 184, 0.8);
-      color: #e5e7eb;
-      box-shadow: none;
-      padding-inline: 12px;
-    }
+    /* Motion-safe */
 
-    .btn.outline-light:hover {
-      background: rgba(15, 23, 42, 0.8);
-      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.8);
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -1073,8 +1079,7 @@
         <div class="reveal">
           <h2 class="section-title">Why shared houses like PowerSplit</h2>
           <p class="section-lead">
-            Less chat, more clarity. The app handles the maths so your group can focus on living together, not fighting
-            over bills.
+            Less chat, more clarity. The app handles the maths so your group can focus on living together, not fighting over bills.
           </p>
           <div class="grid-three">
             <div class="card">
@@ -1094,8 +1099,7 @@
             <div class="card">
               <h3>Instant settle-up</h3>
               <p class="muted">
-                At the end of the month, everyone sees the same breakdown and pays their share online. No more chasing
-                screenshots or rebilling people.
+                At the end of the month, everyone sees the same breakdown and pays their share online. No more chasing screenshots or rebilling people.
               </p>
             </div>
           </div>
@@ -1105,8 +1109,7 @@
           <div class="card">
             <h3>New to PowerSplit?</h3>
             <p class="muted">
-              Start with a Starter Kit and invite your housemates. The app guides you through a short setup and then
-              drops you into the dashboard.
+              Start with a Starter Kit and invite your housemates. The app guides you through a short setup and then drops you into the dashboard.
             </p>
             <div class="row" style="margin-top:10px;">
               <button class="btn primary" data-section="checkout">See checkout flow</button>
@@ -1130,7 +1133,7 @@
           <h2 class="section-title">Dashboard for people who already use PowerSplit</h2>
           <p class="section-lead">
             This view shows how an existing household sees their data: overview at the top, then quick switches for
-            devices, people and statements.
+            devices, people and statements. The bars show how much each person or device contributes.
           </p>
         </div>
 
@@ -1168,7 +1171,6 @@
             </div>
 
             <div class="dash-main-content">
-              <!-- left panel -->
               <div class="dash-panel active" id="dashLeft">
                 <h4 id="dashLeftTitle">Household cost split</h4>
                 <div class="dash-pill-row">
@@ -1176,13 +1178,9 @@
                   <span class="chip">Electric only</span>
                   <span class="chip">3 people</span>
                 </div>
-
-                <div class="bar-chart" id="dashBars">
-                  <!-- bars populated by JS -->
-                </div>
+                <div class="bar-chart" id="dashBars"></div>
               </div>
 
-              <!-- right panel -->
               <div class="dash-panel active" id="dashRight">
                 <h4 id="dashRightTitle">This month at a glance</h4>
                 <div class="table" id="dashTable"></div>
@@ -1456,7 +1454,7 @@
   </div>
 
   <script>
-    // Simple SPA nav
+    // SPA NAV
     const navButtons = document.querySelectorAll(
       "nav button, .header-cta [data-section], .btn[data-section], .small-link[data-section]"
     );
@@ -1484,7 +1482,7 @@
       btn.addEventListener("click", () => showSection(btn.dataset.section));
     });
 
-    // Reveal on scroll
+    // REVEAL ON SCROLL
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -1526,11 +1524,11 @@
         heroAmounts.appendChild(row);
       });
       if (mode === "fair") {
-        heroFairBar.style.width = "56%";
+        heroFairBar.style.transform = "scaleX(0.56)";
         heroNote.textContent =
           "With PowerSplit, heavy users pay more and light users pay less. The total bill stays the same.";
       } else {
-        heroFairBar.style.width = "33%";
+        heroFairBar.style.transform = "scaleX(0.33)";
         heroNote.textContent =
           "With a flat split, everyone pays the same — even when their actual usage is very different.";
       }
@@ -1559,9 +1557,9 @@
         leftTitle: "Household cost split",
         rightTitle: "This month at a glance",
         bars: [
-          { name: "You", value: 36.8, share: 38 },
-          { name: "Sam", value: 30.1, share: 32 },
-          { name: "Riley", value: 28.4, share: 30 }
+          { name: "You", value: 36.8, height: 88 },
+          { name: "Sam", value: 30.1, height: 72 },
+          { name: "Riley", value: 28.4, height: 68 }
         ],
         table: [
           ["Total bill", "£95.30"],
@@ -1575,9 +1573,9 @@
         leftTitle: "Biggest devices this month",
         rightTitle: "Where costs go",
         bars: [
-          { name: "Heater", value: 18.6, share: 40 },
-          { name: "PC & monitor", value: 14.2, share: 32 },
-          { name: "Tumble dryer", value: 9.8, share: 28 }
+          { name: "Heater", value: 18.6, height: 100 },
+          { name: "PC & monitor", value: 14.2, height: 80 },
+          { name: "Dryer", value: 9.8, height: 60 }
         ],
         table: [
           ["Kitchen & fridge", "£12.10 (shared)"],
@@ -1591,9 +1589,9 @@
         leftTitle: "People vs devices",
         rightTitle: "Per-person summary",
         bars: [
-          { name: "You", value: 36.8, share: 48 },
-          { name: "Sam", value: 30.1, share: 38 },
-          { name: "Riley", value: 28.4, share: 34 }
+          { name: "You", value: 36.8, height: 100 },
+          { name: "Sam", value: 30.1, height: 82 },
+          { name: "Riley", value: 28.4, height: 78 }
         ],
         table: [
           ["You", "Heater, PC · £36.80"],
@@ -1607,9 +1605,9 @@
         leftTitle: "Last 3 months",
         rightTitle: "Export & share",
         bars: [
-          { name: "August", value: 82.4, share: 86 },
-          { name: "September", value: 90.1, share: 94 },
-          { name: "October", value: 95.3, share: 100 }
+          { name: "Aug", value: 82.4, height: 82 },
+          { name: "Sep", value: 90.1, height: 90 },
+          { name: "Oct", value: 95.3, height: 100 }
         ],
         table: [
           ["August", "Settled · exported as PDF"],
@@ -1633,11 +1631,19 @@
         item.innerHTML = `
           <div>${b.name}</div>
           <div class="bar-track">
-            <div class="bar-fill" style="transform:scaleY(${b.share / 100});"></div>
+            <div class="bar-fill" data-height="${b.height}"></div>
           </div>
           <div class="bar-label">£${b.value.toFixed(2)}</div>
         `;
         dashBars.appendChild(item);
+      });
+
+      // animate fills after DOM update
+      requestAnimationFrame(() => {
+        document.querySelectorAll(".bar-fill").forEach((bar) => {
+          const h = bar.getAttribute("data-height");
+          bar.style.transform = `scaleY(${h / 100})`;
+        });
       });
 
       dashTable.innerHTML = "";
@@ -1841,7 +1847,7 @@
     }
 
     if (!localStorage.getItem("ps-cookie-choice")) {
-      setTimeout(() => cookieInner.classList.add("show"), 400);
+      setTimeout(() => cookieInner.classList.add("show"), 500);
     } else {
       cookieBar.style.display = "none";
     }
